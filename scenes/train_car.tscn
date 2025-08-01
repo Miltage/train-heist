@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://csq1hupty5t2b"]
+[gd_scene load_steps=2 format=3 uid="uid://csq1hupty5t2b"]
+
+[ext_resource type="Script" uid="uid://bhphw5nun33p1" path="res://scripts/TrainCar.gd" id="1_6jgwd"]
 
 [node name="TrainCar" type="Node3D"]
+script = ExtResource("1_6jgwd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468513, 0)
-size = Vector3(1.5293, 0.746094, 0.625)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370583, 0)
+size = Vector3(1.34277, 0.567383, 0.625)

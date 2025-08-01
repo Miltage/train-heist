@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=10 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="2_0wfyh"]
 [ext_resource type="Shader" uid="uid://uarbhnbpunei" path="res://shaders/toon.gdshader" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://d0476t32bchwc" path="res://scripts/RailCircle.gd" id="3_jyhfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
 shader = ExtResource("2_sugp2")
 shader_parameter/color = Color(1, 0.827451, 0.639216, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(1, 0.67451, 0.498039, 1)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
+shader_parameter/shadow = 0.758
+shader_parameter/shadow_width = 0.236
+shader_parameter/shadow_color = Color(0.74902, 0.14902, 0.317647, 1)
+shader_parameter/_specular_smoothness = 0.0
+shader_parameter/_specular_strength = 0.0
 shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.725
+shader_parameter/_rim_size = 1.0
 shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
@@ -34,10 +36,18 @@ shader_parameter/_rim_smoothness = 0.0
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
-tonemap_mode = 4
-tonemap_exposure = 0.75
 
-[node name="Main" type="Node3D"]
+[sub_resource type="Curve3D" id="Curve3D_jyhfs"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -32, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
+script = ExtResource("1_tbgi4")
+track = NodePath("LeftCircle")
+train = NodePath("TrainCar")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
@@ -54,7 +64,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
 surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 48.9612, 33.521)
+transform = Transform3D(1, 0, 0, 0, 0.633948, 0.773376, 0, -0.773376, 0.633948, 0.60743, 35.039, 33.521)
 environment = SubResource("Environment_0wfyh")
 projection = 1
 size = 30.0
@@ -67,7 +77,26 @@ shadow_enabled = true
 shadow_bias = 5.0
 shadow_opacity = 0.8
 
-[node name="TrainCar" parent="." instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117531, 6.80131)
+[node name="TrainCar" parent="." node_paths=PackedStringArray("leftCircle", "rightCircle", "circleTrack", "track") instance=ExtResource("2_0wfyh")]
+transform = Transform3D(0.141421, 0, 0.989941, 0, 1, 0, -0.989941, 0, 0.141421, -0.0682535, 0, 0)
+leftCircle = NodePath("../LeftCircle")
+rightCircle = NodePath("../RightCircle")
+circleTrack = NodePath("../LeftCircle")
+track = NodePath("../BottomTrack")
+
+[node name="LeftCircle" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+script = ExtResource("3_jyhfs")
+
+[node name="RightCircle" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+script = ExtResource("3_jyhfs")
+
+[node name="BottomTrack" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3239, 0, 6.75109)
+curve = SubResource("Curve3D_jyhfs")
+
+[node name="Sphere" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74747, 0, 0)
 
 [editable path="map"]

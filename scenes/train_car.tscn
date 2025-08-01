@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://csq1hupty5t2b"]
+
+[node name="TrainCar" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.468513, 0)
+size = Vector3(1.5293, 0.746094, 0.625)

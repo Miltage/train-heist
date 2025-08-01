@@ -1,23 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=7 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="2_0wfyh"]
+[ext_resource type="Shader" uid="uid://uarbhnbpunei" path="res://shaders/toon.gdshader" id="2_sugp2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
+render_priority = 0
+shader = ExtResource("2_sugp2")
+shader_parameter/color = Color(1, 0.827451, 0.639216, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(1, 0.67451, 0.498039, 1)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.725
+shader_parameter/_rim_smoothness = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+render_priority = 0
+shader = ExtResource("2_sugp2")
+shader_parameter/color = Color(0.544142, 0.419576, 0.494895, 1)
+shader_parameter/shadow = 0.804
+shader_parameter/shadow_width = 0.002
+shader_parameter/shadow_color = Color(0.480155, 0.247492, 0.292806, 1)
+shader_parameter/_specular_smoothness = 0.196
+shader_parameter/_specular_strength = 0.056
+shader_parameter/_glossiness = 0.067
+shader_parameter/_rim_size = 0.41
+shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+tonemap_mode = 4
+tonemap_exposure = 0.75
 
 [node name="Main" type="Node3D"]
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
+[node name="CircleTrackLeft" parent="map" index="0"]
+cast_shadow = 0
+
+[node name="CircleTrackRight" parent="map" index="1"]
+cast_shadow = 0
+
+[node name="Floor" parent="map" index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
+
+[node name="Mountain" parent="map" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 48.9612, 33.521)
+environment = SubResource("Environment_0wfyh")
 projection = 1
 size = 30.0
 far = 250.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.536801, -0.759832, 0.366742, -0.0339416, 0.414879, 0.909243, -0.843026, -0.500531, 0.196917, 0, 35.8553, 0)
+transform = Transform3D(0.723126, -0.61105, -0.322034, 0.541952, 0.212891, 0.812998, -0.428224, -0.762427, 0.485107, -0.22261, 40.2138, -0.836525)
+light_specular = 2.0
 shadow_enabled = true
-shadow_normal_bias = 1.0
-shadow_opacity = 0.9
+shadow_bias = 5.0
+shadow_opacity = 0.8
 
 [node name="TrainCar" parent="." instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117531, 6.80131)
+
+[editable path="map"]

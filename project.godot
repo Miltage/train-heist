@@ -24,5 +24,20 @@ window/size/viewport_height=720
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-anti_aliasing/quality/msaa_2d=1
-anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/use_debanding=true
+
+[shader_globals]
+
+diffuse_curve={
+"type": "sampler2D",
+"value": ""
+}
+specular_smoothness={
+"type": "float",
+"value": 0.1
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.1
+}

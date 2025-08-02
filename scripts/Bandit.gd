@@ -16,7 +16,12 @@ func get_input():
 
     if (Input.is_action_just_pressed("move_forward")):
         if (overlappingLadder): onLadder = true
-        else: velocity.y = -220
+        else: jump()
+
+    if (Input.is_action_just_pressed("jump") && !onLadder):
+        jump()
+    elif (Input.is_action_just_pressed("jump") && onLadder):
+        onLadder = false
 
     if (velocity.x < 0): dir = -1
     elif (velocity.x > 0): dir = 1
@@ -36,3 +41,6 @@ func _physics_process(_delta) -> void:
     if (!onLadder): velocity.y += 10
     move_and_slide()
     $Sprite2D.flip_h = dir < 0
+
+func jump() -> void:
+    velocity.y = -220

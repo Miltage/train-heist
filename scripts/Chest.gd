@@ -57,3 +57,7 @@ func set_state(newState:ChestState) -> void:
 	elif (state == ChestState.OPEN): $Open.show()
 	elif (state == ChestState.HIDING): $Hidden.show()
 	elif (state == ChestState.LOCKED): $Lockedd.show()
+	scale = Vector2.ONE * 1.2
+
+func _process(_delta: float) -> void:
+	scale = scale.lerp(Vector2.ONE, 0.4)

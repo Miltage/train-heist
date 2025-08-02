@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=24 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cj662rcnm3kv3" path="res://scenes/train.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://o4y1iiqqeyhc" path="res://scenes/track_switch.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dpe02uec1ahlq" path="res://scenes/player.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://brbwxgxrrsa7n" path="res://scenes/train_2d.tscn" id="8_tipki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -20,6 +21,19 @@ shader_parameter/_specular_strength = 0.0
 shader_parameter/_glossiness = 0.1
 shader_parameter/_rim_size = 1.0
 shader_parameter/_rim_smoothness = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+render_priority = 0
+shader = ExtResource("2_sugp2")
+shader_parameter/color = Color(0.544142, 0.419576, 0.494895, 1)
+shader_parameter/shadow = 0.804
+shader_parameter/shadow_width = 0.002
+shader_parameter/shadow_color = Color(0.480155, 0.247492, 0.292806, 1)
+shader_parameter/_specular_smoothness = 0.196
+shader_parameter/_specular_strength = 0.056
+shader_parameter/_glossiness = 0.067
+shader_parameter/_rim_size = 0.41
+shader_parameter/_rim_smoothness = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
 radius = 2.0
@@ -38,19 +52,6 @@ size = Vector3(15.2109, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ya4ey"]
 size = Vector3(11.333, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
-render_priority = 0
-shader = ExtResource("2_sugp2")
-shader_parameter/color = Color(0.544142, 0.419576, 0.494895, 1)
-shader_parameter/shadow = 0.804
-shader_parameter/shadow_width = 0.002
-shader_parameter/shadow_color = Color(0.480155, 0.247492, 0.292806, 1)
-shader_parameter/_specular_smoothness = 0.196
-shader_parameter/_specular_strength = 0.056
-shader_parameter/_glossiness = 0.067
-shader_parameter/_rim_size = 0.41
-shader_parameter/_rim_smoothness = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(50, 1, 1)
@@ -105,6 +106,9 @@ cast_shadow = 0
 
 [node name="Floor" parent="map" index="6"]
 surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
+
+[node name="Mountain" parent="map" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93729, 0.399799)
@@ -180,9 +184,6 @@ shape = SubResource("BoxShape3D_85g3d")
 [node name="Wall2" type="CollisionShape3D" parent="map/MountainCollision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19397, 6.10135, -1.36124)
 shape = SubResource("BoxShape3D_ya4ey")
-
-[node name="Mountain" parent="map" index="8"]
-surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
 
 [node name="Boundaries" type="StaticBody3D" parent="map"]
 
@@ -292,5 +293,8 @@ startingTrack = NodePath("../BottomTrack")
 
 [node name="Player" parent="." instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -0.130847)
+
+[node name="Train2D" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(77, 515)
 
 [editable path="map"]

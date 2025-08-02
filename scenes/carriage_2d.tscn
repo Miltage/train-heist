@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl4ugtlkr2pph"]
+
+[ext_resource type="Texture2D" uid="uid://pa6vy4kfrf1m" path="res://krita/carriage.png" id="1_nolpt"]
+[ext_resource type="Script" uid="uid://1so8prxcsae2" path="res://scripts/Carriage2D.gd" id="2_7cqo1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le8ex"]
+size = Vector2(684, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cqo1"]
+size = Vector2(530, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jka0q"]
+size = Vector2(20, 72)
+
+[node name="Carriage" type="Sprite2D"]
+texture = ExtResource("1_nolpt")
+script = ExtResource("2_7cqo1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 137)
+shape = SubResource("RectangleShape2D_le8ex")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -120)
+shape = SubResource("RectangleShape2D_7cqo1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-244, -72)
+shape = SubResource("RectangleShape2D_jka0q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(233, -72)
+shape = SubResource("RectangleShape2D_jka0q")

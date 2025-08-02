@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://brbwxgxrrsa7n"]
+
+[ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
+[ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
+[ext_resource type="Texture2D" uid="uid://dh4flpxjuanh6" path="res://krita/sheriff.png" id="3_823e8"]
+[ext_resource type="PackedScene" uid="uid://irdqu84riblt" path="res://scenes/bandit.tscn" id="3_jwsgh"]
+[ext_resource type="Texture2D" uid="uid://cjtxq5hhngj8g" path="res://krita/front4.png" id="4_kgevx"]
+[ext_resource type="Texture2D" uid="uid://0rvxjh72r8ye" path="res://krita/front2.png" id="6_ac5vk"]
+[ext_resource type="Texture2D" uid="uid://cwyhyb5clg7uv" path="res://krita/front3.png" id="7_jwsgh"]
+[ext_resource type="Texture2D" uid="uid://23cks6cw1hkv" path="res://krita/front1.png" id="8_mnbqa"]
+[ext_resource type="Texture2D" uid="uid://cac3njo8rfe5f" path="res://krita/wheel.png" id="9_jwsgh"]
+[ext_resource type="PackedScene" uid="uid://byet87hxjcpvt" path="res://scenes/ladder.tscn" id="10_mnbqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwsgh"]
+size = Vector2(22.5, 462.5)
+
+[node name="Train2D" type="Node2D"]
+texture_filter = 6
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_qe48q")
+
+[node name="Ladder" parent="." instance=ExtResource("10_mnbqa")]
+position = Vector2(102.5, 222.5)
+scale = Vector2(1, 1)
+
+[node name="Ladder2" parent="." instance=ExtResource("10_mnbqa")]
+position = Vector2(2722.5, 222.5)
+scale = Vector2(1, 1)
+
+[node name="Carriage1" parent="." instance=ExtResource("1_a8ued")]
+position = Vector2(398, 216)
+
+[node name="Carriage2" parent="." instance=ExtResource("1_a8ued")]
+position = Vector2(1082, 216)
+
+[node name="Carriage3" parent="." instance=ExtResource("1_a8ued")]
+position = Vector2(1756, 216)
+
+[node name="Carriage4" parent="." instance=ExtResource("1_a8ued")]
+position = Vector2(2436, 216)
+
+[node name="Bandit" parent="." instance=ExtResource("3_jwsgh")]
+position = Vector2(290, 257.5)
+
+[node name="Sheriff" type="Sprite2D" parent="."]
+position = Vector2(810, 272.5)
+texture = ExtResource("3_823e8")
+
+[node name="Front1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(397.5, 217.5)
+texture = ExtResource("4_kgevx")
+
+[node name="Front2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1082.5, 217.5)
+texture = ExtResource("6_ac5vk")
+
+[node name="Front3" type="Sprite2D" parent="."]
+position = Vector2(1757.5, 217.5)
+texture = ExtResource("7_jwsgh")
+
+[node name="Front4" type="Sprite2D" parent="."]
+position = Vector2(2437.5, 217.5)
+texture = ExtResource("8_mnbqa")
+
+[node name="Wheel1" type="Sprite2D" parent="."]
+position = Vector2(2280, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel2" type="Sprite2D" parent="."]
+position = Vector2(2580, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel3" type="Sprite2D" parent="."]
+position = Vector2(1600, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel4" type="Sprite2D" parent="."]
+position = Vector2(1900, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel5" type="Sprite2D" parent="."]
+position = Vector2(920, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel6" type="Sprite2D" parent="."]
+position = Vector2(1220, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel7" type="Sprite2D" parent="."]
+position = Vector2(237.5, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel8" type="Sprite2D" parent="."]
+position = Vector2(537.501, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(21.25, 131.25)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jwsgh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(2808.75, 131.25)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jwsgh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(2808.75, 131.25)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jwsgh")

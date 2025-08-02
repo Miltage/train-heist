@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://irdqu84riblt"]
+
+[ext_resource type="Texture2D" uid="uid://wu6xnn55tuhc" path="res://krita/bandit.png" id="1_gvbh8"]
+[ext_resource type="Script" uid="uid://bb6dt15bay8ml" path="res://scripts/Bandit.gd" id="1_wjvvg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvbh8"]
+radius = 34.0
+height = 144.0
+
+[node name="Bandit" type="CharacterBody2D"]
+script = ExtResource("1_wjvvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gvbh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_gvbh8")

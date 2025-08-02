@@ -11,7 +11,7 @@ signal train_stopped
 var speed:float = 0
 var targetSpeed:float = 0
 
-var _baseSpeed:float = 1.4
+var _baseSpeed:float = 1.0
 var _stopped:bool
 var _cars:Array
 

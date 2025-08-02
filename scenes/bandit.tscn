@@ -1,9 +1,83 @@
-[gd_scene load_steps=6 format=3 uid="uid://irdqu84riblt"]
+[gd_scene load_steps=15 format=3 uid="uid://irdqu84riblt"]
 
-[ext_resource type="Texture2D" uid="uid://wu6xnn55tuhc" path="res://krita/bandit.png" id="1_gvbh8"]
 [ext_resource type="Script" uid="uid://bb6dt15bay8ml" path="res://scripts/Bandit.gd" id="1_wjvvg"]
 [ext_resource type="Texture2D" uid="uid://bkey8m1ramgci" path="res://krita/empty_hands.png" id="3_rkhdv"]
 [ext_resource type="Texture2D" uid="uid://ckosajycj5v6q" path="res://krita/hands_coin.png" id="4_5mrb3"]
+[ext_resource type="Texture2D" uid="uid://cp3f06aonxbu7" path="res://krita/bandit-sheet.png" id="4_r1qhc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7nmy"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(0, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrb3"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(180, 180, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6vea"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(0, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xaei"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(180, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en7xe"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(360, 0, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w5lp"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(0, 180, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivkpt"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(180, 180, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibk47"]
+atlas = ExtResource("4_r1qhc")
+region = Rect2(360, 180, 180, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfaa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7nmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mrb3")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6vea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xaei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en7xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w5lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivkpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibk47")
+}],
+"loop": true,
+"name": &"running",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvbh8"]
 radius = 34.0
@@ -12,13 +86,9 @@ height = 144.0
 [node name="Bandit" type="CharacterBody2D"]
 script = ExtResource("1_wjvvg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -80)
-texture = ExtResource("1_gvbh8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -76)
-shape = SubResource("CapsuleShape2D_gvbh8")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -85)
+sprite_frames = SubResource("SpriteFrames_kfaa0")
 
 [node name="EmptyHands" type="Sprite2D" parent="."]
 position = Vector2(0, -84)
@@ -27,3 +97,7 @@ texture = ExtResource("3_rkhdv")
 [node name="CoinHands" type="Sprite2D" parent="."]
 position = Vector2(0, -84)
 texture = ExtResource("4_5mrb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -76)
+shape = SubResource("CapsuleShape2D_gvbh8")

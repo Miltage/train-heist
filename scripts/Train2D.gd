@@ -60,6 +60,7 @@ func board_train() -> void:
 	$Bandit.dir = 1
 	$Bandit.position = $Entry.position
 	playerOnBoard = true
+	playerCanLeave = false
 
 func leave_train() -> void:
 	$Bandit.hide()

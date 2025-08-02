@@ -34,3 +34,8 @@ func _on_train_stopped() -> void:
 func _on_game_restarted() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_tunnel_body_entered(body:Node3D) -> void:
+	if (body is TrainCar && (body as TrainCar).first): 
+		print("train entered tunnel")
+		$Train2D.enter_tunnel()

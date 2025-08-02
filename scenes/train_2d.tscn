@@ -193,6 +193,13 @@ position = Vector2(1400, 27.5)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qxubf")
 
+[node name="Darkness" type="ColorRect" parent="."]
+offset_left = 3240.0
+offset_top = -167.0
+offset_right = 8957.0
+offset_bottom = 532.0
+color = Color(0, 0, 0, 1)
+
 [connection signal="body_entered" from="BoardArea" to="." method="_on_board_area_body_entered"]
 [connection signal="body_exited" from="BoardArea" to="." method="_on_board_area_body_exited"]
 [connection signal="body_entered" from="RoofArea" to="." method="_on_roof_area_body_entered"]

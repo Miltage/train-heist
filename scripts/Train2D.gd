@@ -11,9 +11,10 @@ var playerOnRoof:bool = false
 
 var _chests:Array
 var _timeElapsed:float
+var _tunnelPos:float
 
 func _process(delta: float) -> void:
-	speed = train.speed * 2
+	speed = train.speed * 5
 	$Wheel1.rotation += delta * speed
 	$Wheel2.rotation += delta * speed
 	$Wheel3.rotation += delta * speed
@@ -26,12 +27,15 @@ func _process(delta: float) -> void:
 	_timeElapsed += delta * speed
 	if (_timeElapsed > 2.7): _timeElapsed = 0.0
 
-	$Track.position.x = -_timeElapsed * 60
+	$Track.position.x = -_timeElapsed * 80
 
 	$Front1.banditOnBoard = playerOnBoard
 	$Front2.banditOnBoard = playerOnBoard
 	$Front3.banditOnBoard = playerOnBoard
 	$Front4.banditOnBoard = playerOnBoard
+
+	_tunnelPos += delta * speed
+	$Darkness.position.x = 3000 - _tunnelPos * 80
 
 	if (Input.is_action_just_pressed("interact") && playerCanLeave):
 		leave_train()
@@ -49,6 +53,8 @@ func _ready() -> void:
 		chest.bandit_entered.connect(_on_bandit_entered_chest)
 		chest.bandit_exited.connect(_on_bandit_exited_chest)
 	open_chests()
+
+	_tunnelPos = 5000
 
 func _on_bandit_entered_chest() -> void:
 	$Bandit.hide()
@@ -93,3 +99,6 @@ func _on_roof_area_body_exited(body: Node2D) -> void:
 
 func player_can_be_found() -> bool:
 	return playerOnBoard && !playerOnRoof
+
+func enter_tunnel() -> void:
+	_tunnelPos = 0

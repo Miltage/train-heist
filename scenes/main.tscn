@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=31 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -101,6 +101,9 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
+size = Vector3(15.9873, 1, 1)
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
@@ -347,11 +350,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7602, 0.0673518, 0.001447
 [node name="BankStop" parent="." instance=ExtResource("10_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.778, 0.0673518, -0.0235521)
 
+[node name="Tunnel" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65446, 0, -6.67182)
+shape = SubResource("BoxShape3D_eb6dy")
+
 [node name="EndScreen" parent="." instance=ExtResource("11_ya4ey")]
 visible = false
 
 [connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
 [connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]
 [connection signal="body_exited" from="Hideout" to="Hideout" method="_on_body_exited"]
+[connection signal="body_entered" from="Tunnel" to="." method="_on_tunnel_body_entered"]
 
 [editable path="map"]

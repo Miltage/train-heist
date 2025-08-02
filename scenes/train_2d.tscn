@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=14 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://irdqu84riblt" path="res://scenes/bandit.tscn" id="3_jwsgh"]
 [ext_resource type="Texture2D" uid="uid://cjtxq5hhngj8g" path="res://krita/front4.png" id="4_kgevx"]
 [ext_resource type="PackedScene" uid="uid://bbfkc27lg5t4k" path="res://scenes/chest.tscn" id="4_ko07q"]
+[ext_resource type="Texture2D" uid="uid://0rvxjh72r8ye" path="res://krita/front2.png" id="6_ac5vk"]
 [ext_resource type="PackedScene" uid="uid://dr47mpigdugv1" path="res://scenes/carriage_area.tscn" id="7_ac5vk"]
 [ext_resource type="Texture2D" uid="uid://cwyhyb5clg7uv" path="res://krita/front3.png" id="7_jwsgh"]
 [ext_resource type="Texture2D" uid="uid://cac3njo8rfe5f" path="res://krita/wheel.png" id="9_jwsgh"]
@@ -13,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwsgh"]
 size = Vector2(22.5, 462.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ko07q"]
+radius = 42.5
 
 [node name="Train2D" type="Node2D"]
 texture_filter = 6
@@ -57,17 +61,18 @@ position = Vector2(810, 272.5)
 texture = ExtResource("3_823e8")
 
 [node name="Front1" parent="." instance=ExtResource("7_ac5vk")]
-position = Vector2(2435, 220)
+position = Vector2(2435, 217.5)
 
 [node name="Front2" parent="." instance=ExtResource("7_ac5vk")]
-position = Vector2(1757.5, 220)
+position = Vector2(1757.5, 217.5)
+texture = ExtResource("6_ac5vk")
 
 [node name="Front3" parent="." instance=ExtResource("7_ac5vk")]
-position = Vector2(1082.5, 220)
+position = Vector2(1082.5, 217.5)
 texture = ExtResource("7_jwsgh")
 
 [node name="Front4" parent="." instance=ExtResource("7_ac5vk")]
-position = Vector2(402.5, 220)
+position = Vector2(397.5, 217.5)
 texture = ExtResource("4_kgevx")
 
 [node name="Wheel1" type="Sprite2D" parent="."]
@@ -115,3 +120,15 @@ shape = SubResource("RectangleShape2D_jwsgh")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2(2808.75, 131.25)
 shape = SubResource("RectangleShape2D_jwsgh")
+
+[node name="Entry" type="Marker2D" parent="."]
+position = Vector2(80, 320)
+
+[node name="BoardArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoardArea"]
+position = Vector2(77.5, 300)
+shape = SubResource("CircleShape2D_ko07q")
+
+[connection signal="body_entered" from="BoardArea" to="." method="_on_board_area_body_entered"]
+[connection signal="body_exited" from="BoardArea" to="." method="_on_board_area_body_exited"]

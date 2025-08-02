@@ -92,9 +92,10 @@ _data = {
 }
 point_count = 2
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("track")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
 track = NodePath("LeftCircle")
+train = NodePath("Train")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 

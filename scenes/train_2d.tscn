@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=15 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cwyhyb5clg7uv" path="res://krita/front3.png" id="7_jwsgh"]
 [ext_resource type="Texture2D" uid="uid://cac3njo8rfe5f" path="res://krita/wheel.png" id="9_jwsgh"]
 [ext_resource type="PackedScene" uid="uid://byet87hxjcpvt" path="res://scenes/ladder.tscn" id="10_mnbqa"]
+[ext_resource type="Texture2D" uid="uid://nn63sfcilogk" path="res://krita/track.png" id="12_qxubf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwsgh"]
 size = Vector2(22.5, 462.5)
@@ -127,8 +128,60 @@ position = Vector2(80, 320)
 [node name="BoardArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BoardArea"]
-position = Vector2(77.5, 300)
+position = Vector2(55, 300)
 shape = SubResource("CircleShape2D_ko07q")
+
+[node name="Track" type="Node2D" parent="."]
+
+[node name="TrackPiece" type="Sprite2D" parent="Track"]
+position = Vector2(-95, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece2" type="Sprite2D" parent="Track"]
+position = Vector2(315, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece3" type="Sprite2D" parent="Track"]
+position = Vector2(722.5, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece4" type="Sprite2D" parent="Track"]
+position = Vector2(1130, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece5" type="Sprite2D" parent="Track"]
+position = Vector2(1540, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece6" type="Sprite2D" parent="Track"]
+position = Vector2(1947.5, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece7" type="Sprite2D" parent="Track"]
+position = Vector2(2357.5, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece8" type="Sprite2D" parent="Track"]
+position = Vector2(2765, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece9" type="Sprite2D" parent="Track"]
+position = Vector2(3175, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
+
+[node name="TrackPiece10" type="Sprite2D" parent="Track"]
+position = Vector2(3582.5, 445)
+scale = Vector2(1, 1)
+texture = ExtResource("12_qxubf")
 
 [connection signal="body_entered" from="BoardArea" to="." method="_on_board_area_body_entered"]
 [connection signal="body_exited" from="BoardArea" to="." method="_on_board_area_body_exited"]

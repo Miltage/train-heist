@@ -2,12 +2,17 @@ extends Node2D
 
 signal player_left
 
+@export var train:Train
+
 var speed:float = 2
 var playerCanLeave:bool = false
+var playerOnBoard:bool = false
 
 var _chests:Array
+var _timeElapsed:float
 
 func _process(delta: float) -> void:
+	speed = train.speed * 2
 	$Wheel1.rotation += delta * speed
 	$Wheel2.rotation += delta * speed
 	$Wheel3.rotation += delta * speed
@@ -16,6 +21,19 @@ func _process(delta: float) -> void:
 	$Wheel6.rotation += delta * speed
 	$Wheel7.rotation += delta * speed
 	$Wheel8.rotation += delta * speed
+
+	_timeElapsed += delta * speed
+	if (_timeElapsed > 2.7): _timeElapsed = 0.0
+
+	$Track.position.x = -_timeElapsed * 60
+
+	$Front1.banditOnBoard = playerOnBoard
+	$Front2.banditOnBoard = playerOnBoard
+	$Front3.banditOnBoard = playerOnBoard
+	$Front4.banditOnBoard = playerOnBoard
+
+	if (Input.is_action_just_pressed("interact") && playerCanLeave):
+		leave_train()
 
 func _ready() -> void:
 	$Bandit.hide()
@@ -41,9 +59,11 @@ func board_train() -> void:
 	$Bandit.show()
 	$Bandit.dir = 1
 	$Bandit.position = $Entry.position
+	playerOnBoard = true
 
 func leave_train() -> void:
 	$Bandit.hide()
+	playerOnBoard = false
 	player_left.emit()
 
 func _on_board_area_body_entered(body:Node2D) -> void:
@@ -51,10 +71,6 @@ func _on_board_area_body_entered(body:Node2D) -> void:
 
 func _on_board_area_body_exited(body:Node2D) -> void:
 	if (body is Bandit): playerCanLeave = false
-
-func _input(_event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("interact") && playerCanLeave):
-		leave_train()
 
 func hide_coin() -> void:
 	for chest in _chests:

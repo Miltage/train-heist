@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bj8dmem6344pd" path="res://scenes/train_stop.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://nvt502tv3t5b" path="res://scenes/end_screen.tscn" id="11_ya4ey"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
 shader = ExtResource("2_sugp2")
@@ -37,10 +41,6 @@ shader_parameter/_specular_strength = 0.056
 shader_parameter/_glossiness = 0.067
 shader_parameter/_rim_size = 0.41
 shader_parameter/_rim_smoothness = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
 radius = 2.0
@@ -108,20 +108,20 @@ train = NodePath("Train")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
-[node name="CircleTrackLeft" parent="map" index="0"]
+[node name="CaveEntrance" parent="map" index="0"]
+material_override = SubResource("StandardMaterial3D_ya4ey")
+
+[node name="CircleTrackLeft" parent="map" index="1"]
 cast_shadow = 0
 
-[node name="CircleTrackRight" parent="map" index="1"]
+[node name="CircleTrackRight" parent="map" index="2"]
 cast_shadow = 0
 
-[node name="Floor" parent="map" index="6"]
+[node name="Floor" parent="map" index="7"]
 surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
 
-[node name="Mountain" parent="map" index="7"]
+[node name="Mountain" parent="map" index="8"]
 surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
-
-[node name="Plane" parent="map" index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_tipki")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93729, 0.399799)
@@ -305,7 +305,7 @@ rightCircle = NodePath("../RightCircle")
 startingTrack = NodePath("../BottomTrack")
 
 [node name="Player" parent="." instance=ExtResource("7_o6xl0")]
-transform = Transform3D(-0.703159, 0, -0.711033, 0, 1, 0, 0.711033, 0, -0.703159, 0.255774, 0, 1.90949)
+transform = Transform3D(-0.703159, 0, -0.711033, 0, 1, 0, 0.711033, 0, -0.703159, 0, 0, 0)
 
 [node name="Train2D" parent="." instance=ExtResource("8_tipki")]
 position = Vector2(77, 515)
@@ -318,10 +318,10 @@ script = ExtResource("9_85g3d")
 shape = SubResource("BoxShape3D_choun")
 
 [node name="SaloonStop" parent="." instance=ExtResource("10_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8974, 0.0673518, -3.36891)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7602, 0.0673518, 0.00144792)
 
 [node name="BankStop" parent="." instance=ExtResource("10_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5893, 0.0673518, 1.70207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.778, 0.0673518, -0.0235521)
 
 [node name="EndScreen" parent="." instance=ExtResource("11_ya4ey")]
 visible = false

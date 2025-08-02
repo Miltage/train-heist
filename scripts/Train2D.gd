@@ -5,6 +5,8 @@ signal player_left
 var speed:float = 2
 var playerCanLeave:bool = false
 
+var _chests:Array
+
 func _process(delta: float) -> void:
 	$Wheel1.rotation += delta * speed
 	$Wheel2.rotation += delta * speed
@@ -18,15 +20,16 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	$Bandit.hide()
 	$Bandit.position = Vector2(0, 0)
-	$Chest1.bandit_entered.connect(_on_bandit_entered_chest)
-	$Chest2.bandit_entered.connect(_on_bandit_entered_chest)
-	$Chest3.bandit_entered.connect(_on_bandit_entered_chest)
-	$Chest4.bandit_entered.connect(_on_bandit_entered_chest)
-	$Chest1.bandit_exited.connect(_on_bandit_exited_chest)
-	$Chest2.bandit_exited.connect(_on_bandit_exited_chest)
-	$Chest3.bandit_exited.connect(_on_bandit_exited_chest)
-	$Chest4.bandit_exited.connect(_on_bandit_exited_chest)
-	hide_coin()
+
+	_chests.append($Chest1)
+	_chests.append($Chest2)
+	_chests.append($Chest3)
+	_chests.append($Chest4)
+
+	for chest in _chests:
+		chest.bandit_entered.connect(_on_bandit_entered_chest)
+		chest.bandit_exited.connect(_on_bandit_exited_chest)
+	open_chests()
 
 func _on_bandit_entered_chest() -> void:
 	$Bandit.hide()
@@ -54,7 +57,12 @@ func _input(_event: InputEvent) -> void:
 		leave_train()
 
 func hide_coin() -> void:
-	$Chest1.close(false)
-	$Chest2.close(true)
-	$Chest3.close(false)
-	$Chest4.close(false)
+	for chest in _chests:
+		chest.close(false)
+
+	var random_chest:Chest = _chests.pick_random()
+	random_chest.close(true)
+
+func open_chests() -> void:
+	for chest in _chests:
+		chest.open()

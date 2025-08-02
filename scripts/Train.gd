@@ -42,8 +42,12 @@ func _on_player_boarded() -> void:
 	player_boarded.emit()
 
 func stop() -> void:
+	await get_tree().create_timer(1.5).timeout
 	targetSpeed = 0
 	$StopWait.start()
 
 func _on_stop_wait_timeout() -> void:
 	targetSpeed = 2
+
+func get_pos() -> Vector3:
+	return _cars[0].position

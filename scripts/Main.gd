@@ -25,9 +25,11 @@ func _on_train_reached_stop() -> void:
 	train.stop()
 
 func _on_train_stopped() -> void:
-	print("train stopped")
 	if ($Player.boarded):
 		Globals.game_ended.emit(Globals.GameEndReason.FOUND_ON_BOARD)
+
+	if (train.get_pos().x < 0): $Train2D.hide_coin()
+	else: $Train2D.open_chests()
 
 func _on_game_restarted() -> void:
 	get_tree().paused = false

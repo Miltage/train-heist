@@ -44,12 +44,6 @@ func on_secondary_interact() -> void:
 		state = ChestState.OPEN
 		bandit_exited.emit()
 
-func _input(_event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("interact") && banditOverlapping):
-		on_primary_interact()
-	# elif (Input.is_action_just_pressed("interact2") && banditOverlapping):
-	# 	on_secondary_interact()
-
 func set_state(newState:ChestState) -> void:
 	state = newState
 
@@ -69,6 +63,12 @@ func set_state(newState:ChestState) -> void:
 func _process(_delta: float) -> void:
 	scale = scale.lerp(Vector2.ONE, 0.4)
 
+	if (Input.is_action_just_pressed("interact") && banditOverlapping):
+		on_primary_interact()
+
 func close(withCoin:bool) -> void:
 	state = ChestState.CLOSED
 	containsCoins = withCoin
+
+func open() -> void:
+	state = ChestState.OPEN

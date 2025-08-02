@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj8dmem6344pd"]
+
+[ext_resource type="Script" uid="uid://cs3m3tbksmdex" path="res://scripts/TrainStop.gd" id="1_hh3lq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtsxh"]
+
+[node name="TrainStop" type="Area3D"]
+script = ExtResource("1_hh3lq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478585, 0)
+shape = SubResource("BoxShape3D_gtsxh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

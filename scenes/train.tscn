@@ -8,6 +8,7 @@ script = ExtResource("1_d43s7")
 
 [node name="TrainCar" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, -0.0201145, -0.0248668, -0.0353775)
+first = true
 startingOffset = 15.0
 
 [node name="TrainCar2" parent="." instance=ExtResource("1_68jl8")]
@@ -22,3 +23,8 @@ startingOffset = 12.0
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 4.68022, -0.0248668, -0.0353775)
 last = true
 startingOffset = 10.5
+
+[node name="StopWait" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="StopWait" to="." method="_on_stop_wait_timeout"]

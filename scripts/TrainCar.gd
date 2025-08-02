@@ -4,7 +4,7 @@ extends RigidBody3D
 signal player_boarded
 
 @export var last:bool
-@export var leadingCar:TrainCar
+@export var first:bool
 @export var leftCircle:Path3D
 @export var rightCircle:Path3D
 @export var startingTrack:Path3D

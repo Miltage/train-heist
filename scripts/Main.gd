@@ -7,6 +7,9 @@ extends Node3D
 func _ready() -> void:
 	train.player_boarded.connect(_on_player_boarded_train)
 	$Train2D.player_left.connect(_on_player_disembarked_train)
+	$SaloonStop.train_entered.connect(_on_train_reached_stop)
+	$BankStop.train_entered.connect(_on_train_reached_stop)
+	Globals.game_restarted.connect(_on_game_restarted)
 
 func _process(_delta: float) -> void:
 	pass
@@ -17,3 +20,15 @@ func _on_player_boarded_train() -> void:
 
 func _on_player_disembarked_train() -> void:
 	$Player.boarded = false
+
+func _on_train_reached_stop() -> void:
+	train.stop()
+
+func _on_train_stopped() -> void:
+	print("train stopped")
+	if ($Player.boarded):
+		Globals.game_ended.emit(Globals.GameEndReason.FOUND_ON_BOARD)
+
+func _on_game_restarted() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()

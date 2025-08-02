@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=29 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dpe02uec1ahlq" path="res://scenes/player.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://brbwxgxrrsa7n" path="res://scenes/train_2d.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bj8dmem6344pd" path="res://scenes/train_stop.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://nvt502tv3t5b" path="res://scenes/end_screen.tscn" id="11_ya4ey"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -303,7 +305,7 @@ rightCircle = NodePath("../RightCircle")
 startingTrack = NodePath("../BottomTrack")
 
 [node name="Player" parent="." instance=ExtResource("7_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -0.130847)
+transform = Transform3D(-0.703159, 0, -0.711033, 0, 1, 0, 0.711033, 0, -0.703159, 0.255774, 0, 1.90949)
 
 [node name="Train2D" parent="." instance=ExtResource("8_tipki")]
 position = Vector2(77, 515)
@@ -315,6 +317,16 @@ script = ExtResource("9_85g3d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hideout"]
 shape = SubResource("BoxShape3D_choun")
 
+[node name="SaloonStop" parent="." instance=ExtResource("10_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8974, 0.0673518, -3.36891)
+
+[node name="BankStop" parent="." instance=ExtResource("10_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5893, 0.0673518, 1.70207)
+
+[node name="EndScreen" parent="." instance=ExtResource("11_ya4ey")]
+visible = false
+
+[connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
 [connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]
 [connection signal="body_exited" from="Hideout" to="Hideout" method="_on_body_exited"]
 

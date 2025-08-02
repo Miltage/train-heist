@@ -41,6 +41,11 @@ func _physics_process(_delta) -> void:
     if (!onLadder): velocity.y += 10
     move_and_slide()
     $Sprite2D.flip_h = dir < 0
+    $EmptyHands.flip_h = dir < 0
+    $CoinHands.flip_h = dir < 0
+
+    $EmptyHands.visible = !Globals.holdingCoin
+    $CoinHands.visible = Globals.holdingCoin
 
 func jump() -> void:
     velocity.y = -220

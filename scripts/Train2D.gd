@@ -26,6 +26,7 @@ func _ready() -> void:
 	$Chest2.bandit_exited.connect(_on_bandit_exited_chest)
 	$Chest3.bandit_exited.connect(_on_bandit_exited_chest)
 	$Chest4.bandit_exited.connect(_on_bandit_exited_chest)
+	hide_coin()
 
 func _on_bandit_entered_chest() -> void:
 	$Bandit.hide()
@@ -51,3 +52,9 @@ func _on_board_area_body_exited(body:Node2D) -> void:
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("interact") && playerCanLeave):
 		leave_train()
+
+func hide_coin() -> void:
+	$Chest1.close(false)
+	$Chest2.close(true)
+	$Chest3.close(false)
+	$Chest4.close(false)

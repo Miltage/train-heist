@@ -11,6 +11,10 @@ var targetPos:Vector3
 var targetRotation:Vector3
 
 func _process(_delta: float) -> void:
+	$player/Hands.visible = !boarded && !Globals.holdingCoin
+	$player/HandsCoin.visible = !boarded && Globals.holdingCoin
+	$player/Bandit.visible = !boarded
+
 	if (boarded): 
 		follow_car()
 		return
@@ -34,5 +38,3 @@ func follow_car() -> void:
 
 func set_boarded(newBoarded:bool) -> void:
 	boarded = newBoarded
-	$player/Bandit.visible = !boarded
-	$player/Hands.visible = !boarded

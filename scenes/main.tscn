@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=27 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://o4y1iiqqeyhc" path="res://scenes/track_switch.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dpe02uec1ahlq" path="res://scenes/player.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://brbwxgxrrsa7n" path="res://scenes/train_2d.tscn" id="8_tipki"]
+[ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="9_85g3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -34,6 +35,10 @@ shader_parameter/_specular_strength = 0.056
 shader_parameter/_glossiness = 0.067
 shader_parameter/_rim_size = 0.41
 shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
 radius = 2.0
@@ -92,6 +97,8 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
+
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
 track = NodePath("LeftCircle")
@@ -110,6 +117,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
 
 [node name="Mountain" parent="map" index="7"]
 surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
+
+[node name="Plane" parent="map" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tipki")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93729, 0.399799)
@@ -297,5 +307,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -0.130847)
 
 [node name="Train2D" parent="." instance=ExtResource("8_tipki")]
 position = Vector2(77, 515)
+
+[node name="Hideout" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302784, 0, -4.82619)
+script = ExtResource("9_85g3d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hideout"]
+shape = SubResource("BoxShape3D_choun")
+
+[connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]
+[connection signal="body_exited" from="Hideout" to="Hideout" method="_on_body_exited"]
 
 [editable path="map"]

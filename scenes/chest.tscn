@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbfkc27lg5t4k"]
+[gd_scene load_steps=8 format=3 uid="uid://bbfkc27lg5t4k"]
 
 [ext_resource type="Script" uid="uid://bgdn1fdu526kd" path="res://scripts/Chest.gd" id="1_yhylo"]
 [ext_resource type="Texture2D" uid="uid://g5wdwbvtrqk7" path="res://krita/chest_closed.png" id="1_yue2o"]
 [ext_resource type="Texture2D" uid="uid://dmcq15fmc0lpw" path="res://krita/chest_locked.png" id="2_yhylo"]
 [ext_resource type="Texture2D" uid="uid://785i8upxmo0y" path="res://krita/chest_open.png" id="3_w02o5"]
 [ext_resource type="Texture2D" uid="uid://ccad4pie2g2e2" path="res://krita/chest_hidden.png" id="4_ilhio"]
+[ext_resource type="Texture2D" uid="uid://l5bhhpuq7w70" path="res://krita/chest_open_coin.png" id="5_w02o5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w02o5"]
 size = Vector2(99, 92)
@@ -22,6 +23,9 @@ texture = ExtResource("2_yhylo")
 [node name="Open" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("3_w02o5")
+
+[node name="OpenCoin" type="Sprite2D" parent="."]
+texture = ExtResource("5_w02o5")
 
 [node name="Hidden" type="Sprite2D" parent="."]
 visible = false

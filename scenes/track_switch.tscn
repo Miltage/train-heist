@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://o4y1iiqqeyhc"]
+
+[ext_resource type="Script" uid="uid://cq2aadd06efrk" path="res://scripts/TrackSwitch.gd" id="1_5i050"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0pqed"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5i050"]
+albedo_color = Color(0.831373, 0.133333, 0.188235, 1)
+
+[node name="TrackSwitch" type="Area3D"]
+script = ExtResource("1_5i050")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514061, 0)
+shape = SubResource("BoxShape3D_0pqed")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611056, 0)
+size = Vector3(0.3, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_5i050")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

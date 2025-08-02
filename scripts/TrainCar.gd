@@ -1,33 +1,65 @@
 class_name TrainCar
-extends Node3D
+extends RigidBody3D
 
+@export var last:bool
+@export var leadingCar:TrainCar
 @export var leftCircle:Path3D
 @export var rightCircle:Path3D
+@export var startingTrack:Path3D
+@export var startingOffset:float
 
-@export var circleTrack:Path3D
-@export var track:Path3D
+var _track:Path3D
+var _velocity:Vector3
 
 var t:float
+var dir:float
+var speed:float
 
-func _process(delta: float) -> void:
-    t += delta * 4
-    if (track):
-        var trackTransform:Transform3D = track.curve.sample_baked_with_rotation(t, true, true)
-        position = track.position + trackTransform.origin
-        basis = trackTransform.basis.rotated(Vector3.UP, PI/2)
-        prints(t, track.curve.get_baked_length())
-        if (t >= track.curve.get_baked_length()):
-            switch_track(get_closest_circle())
+func _ready() -> void:
+    dir = 1
+    _track = startingTrack
 
-func switch_track(nextTrack:Path3D) -> void:
-    if (nextTrack == track):
-        t = 0
+func _physics_process(delta: float) -> void:
+    t += delta * speed * dir
+    if (_track):
+        var trackTransform:Transform3D = _track.curve.sample_baked_with_rotation(t, true, true)
+        var nextPos:Vector3 = _track.position + trackTransform.origin
+        _velocity = nextPos - global_position
+        move_and_collide(_velocity)
+        global_basis = trackTransform.basis.rotated(Vector3.UP, PI/2)
+        #print(t)
+        if (t >= _track.curve.get_baked_length() || t <= 0.0):
+            if (is_on_circle()): 
+                t = _track.curve.get_baked_length() if (t <= 0.0) else 0.0
+            else:
+                set_track(get_closest_circle())
+
+func set_track(nextTrack:Path3D) -> void:
+    if (_track == nextTrack): return
+
+    _track = nextTrack
+    t = _track.curve.get_closest_offset(global_position - _track.position)
+    if (!is_on_circle()):
+        if (t > _track.curve.get_baked_length() * 0.5):
+            dir = -1
+        else:
+            dir = 1
     else:
-        track = nextTrack
-        t = track.curve.get_closest_offset(position - track.position)
+        var dz:float = global_position.z - _track.position.z
+        if (dz > 0 && global_position.x < 0 || dz < 0 && global_position.x > 0): dir = 1
+        elif (dz < 0 && global_position.x < 0 || dz > 0 && global_position.x > 0): dir = -1
+
+func get_track() -> Path3D:
+    return _track
 
 func get_closest_circle() -> Path3D:
-    if (position.distance_squared_to(leftCircle.position) < position.distance_squared_to(rightCircle.position)):
+    if (global_position.x < 0):
         return leftCircle
     else:
         return rightCircle
+
+func is_on_circle() -> bool:
+    return _track == leftCircle || _track == rightCircle
+
+func get_velocity() -> Vector3:
+    return _velocity

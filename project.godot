@@ -24,6 +24,10 @@ window/size/viewport_height=720
 
 import/blender/enabled=false
 
+[physics]
+
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

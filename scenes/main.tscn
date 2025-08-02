@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=14 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="2_0wfyh"]
 [ext_resource type="Shader" uid="uid://uarbhnbpunei" path="res://shaders/toon.gdshader" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://d0476t32bchwc" path="res://scripts/RailCircle.gd" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cj662rcnm3kv3" path="res://scenes/train.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://o4y1iiqqeyhc" path="res://scenes/track_switch.tscn" id="6_tefeu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -37,9 +38,30 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
 
+[sub_resource type="Curve3D" id="Curve3D_o6xl0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.216652, 0, -0.0622687, 0, 0, 0, 0, 0, 0, -32.42, 0, 0.0350876),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_tipki"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.15979, 0, 0.0088048, 0, 0, 0, 0, 0, 0, -32.065, 0, 0.0148253),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_tefeu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.252, 0, -0.38847, 0, 0, 0, 0, 0, 0, -28.8125, 0, -12.7183),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="Curve3D" id="Curve3D_jyhfs"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -32, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.07781, 0, -0.997813, 0, 0, 0, 0, 0, 0, -28.4875, 0, 11.334),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -47,7 +69,7 @@ point_count = 2
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
 track = NodePath("LeftCircle")
-train = NodePath("TrainCar")
+train = NodePath("")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
@@ -77,13 +99,6 @@ shadow_enabled = true
 shadow_bias = 5.0
 shadow_opacity = 0.8
 
-[node name="TrainCar" parent="." node_paths=PackedStringArray("leftCircle", "rightCircle", "circleTrack", "track") instance=ExtResource("2_0wfyh")]
-transform = Transform3D(0.141421, 0, 0.989941, 0, 1, 0, -0.989941, 0, 0.141421, -0.0682535, 0, 0)
-leftCircle = NodePath("../LeftCircle")
-rightCircle = NodePath("../RightCircle")
-circleTrack = NodePath("../LeftCircle")
-track = NodePath("../BottomTrack")
-
 [node name="LeftCircle" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
 script = ExtResource("3_jyhfs")
@@ -94,9 +109,68 @@ script = ExtResource("3_jyhfs")
 
 [node name="BottomTrack" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3239, 0, 6.75109)
+curve = SubResource("Curve3D_o6xl0")
+
+[node name="TopTrack" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.324, 0, -6.779)
+curve = SubResource("Curve3D_tipki")
+
+[node name="DownwardX" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7833, 0, 6.64212)
+curve = SubResource("Curve3D_tefeu")
+
+[node name="UpwardX" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7833, 0, -5.40281)
 curve = SubResource("Curve3D_jyhfs")
 
-[node name="Sphere" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74747, 0, 0)
+[node name="TrackSwitch" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, -6.78324)
+track1 = NodePath("../LeftCircle")
+track2 = NodePath("../TopTrack")
+
+[node name="TrackSwitch5" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, 6.74336)
+track1 = NodePath("../LeftCircle")
+track2 = NodePath("../BottomTrack")
+
+[node name="TrackSwitch4" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, -5.60393)
+track1 = NodePath("../LeftCircle")
+track2 = NodePath("../DownwardX")
+
+[node name="TrackSwitch8" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, 5.68105)
+track1 = NodePath("../LeftCircle")
+track2 = NodePath("../UpwardX")
+
+[node name="TrackSwitch2" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, 6.66949)
+track1 = NodePath("../RightCircle")
+track2 = NodePath("../BottomTrack")
+dir = -1.0
+
+[node name="TrackSwitch6" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, -6.803)
+track1 = NodePath("../RightCircle")
+track2 = NodePath("../TopTrack")
+dir = -1.0
+
+[node name="TrackSwitch7" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.441, -0.351436, -5.77205)
+track1 = NodePath("../RightCircle")
+track2 = NodePath("../UpwardX")
+dir = -1.0
+
+[node name="TrackSwitch3" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0767, -0.351436, 5.6069)
+track1 = NodePath("../RightCircle")
+track2 = NodePath("../DownwardX")
+dir = -1.0
+
+[node name="Train" parent="." node_paths=PackedStringArray("leftCircle", "rightCircle", "startingTrack") instance=ExtResource("6_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041919, 0, 6.70457)
+leftCircle = NodePath("../LeftCircle")
+rightCircle = NodePath("../RightCircle")
+startingTrack = NodePath("../BottomTrack")
 
 [editable path="map"]

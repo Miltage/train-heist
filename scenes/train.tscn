@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj662rcnm3kv3"]
+
+[ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="1_68jl8"]
+[ext_resource type="Script" uid="uid://cj3kjfovx0su2" path="res://scripts/Train.gd" id="1_d43s7"]
+
+[node name="Train" type="Node3D"]
+script = ExtResource("1_d43s7")
+
+[node name="TrainCar" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, -0.0201145, -0.0248668, -0.0353775)
+startingOffset = 15.0
+
+[node name="TrainCar2" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(0.99999, -0.00162316, 0, 0.00162314, 0.999999, 0, 0, 0, 0.999992, 1.54325, -0.0248668, -0.0353775)
+startingOffset = 13.5
+
+[node name="TrainCar3" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 3.11662, -0.0248668, -0.0353775)
+startingOffset = 12.0
+
+[node name="TrainCar4" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 4.68022, -0.0248668, -0.0353775)
+last = true
+startingOffset = 10.5

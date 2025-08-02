@@ -25,7 +25,7 @@ func _on_train_reached_stop() -> void:
 	train.stop()
 
 func _on_train_stopped() -> void:
-	if ($Player.boarded):
+	if ($Train2D.player_can_be_found()):
 		Globals.game_ended.emit(Globals.GameEndReason.FOUND_ON_BOARD)
 
 	if (train.get_pos().x < 0): $Train2D.hide_coin()

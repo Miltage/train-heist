@@ -7,6 +7,7 @@ signal player_left
 var speed:float = 2
 var playerCanLeave:bool = false
 var playerOnBoard:bool = false
+var playerOnRoof:bool = false
 
 var _chests:Array
 var _timeElapsed:float
@@ -83,3 +84,12 @@ func hide_coin() -> void:
 func open_chests() -> void:
 	for chest in _chests:
 		chest.open()
+
+func _on_roof_area_body_entered(body: Node2D) -> void:
+	if (body is Bandit): playerOnRoof = true
+
+func _on_roof_area_body_exited(body: Node2D) -> void:
+	if (body is Bandit): playerOnRoof = false
+
+func player_can_be_found() -> bool:
+	return playerOnBoard && !playerOnRoof

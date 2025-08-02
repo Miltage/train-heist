@@ -7,12 +7,16 @@ var overlappingLadder:bool = false
 var onLadder:bool = false
 
 func get_input():
+    if (!visible): 
+        velocity = Vector2.ZERO
+        return
+
     var input_dir = Input.get_axis("steer_left", "steer_right")
     velocity = Vector2(input_dir * speed, velocity.y)
 
     if (Input.is_action_just_pressed("move_forward")):
         if (overlappingLadder): onLadder = true
-        else: velocity.y = -200
+        else: velocity.y = -220
 
     if (velocity.x < 0): dir = -1
     elif (velocity.x > 0): dir = 1

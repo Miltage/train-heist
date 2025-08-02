@@ -11,3 +11,19 @@ func _process(delta: float) -> void:
     $Wheel6.rotation += delta * speed
     $Wheel7.rotation += delta * speed
     $Wheel8.rotation += delta * speed
+
+func _ready() -> void:
+    $Chest1.bandit_entered.connect(_on_bandit_entered_chest)
+    $Chest2.bandit_entered.connect(_on_bandit_entered_chest)
+    $Chest3.bandit_entered.connect(_on_bandit_entered_chest)
+    $Chest4.bandit_entered.connect(_on_bandit_entered_chest)
+    $Chest1.bandit_exited.connect(_on_bandit_exited_chest)
+    $Chest2.bandit_exited.connect(_on_bandit_exited_chest)
+    $Chest3.bandit_exited.connect(_on_bandit_exited_chest)
+    $Chest4.bandit_exited.connect(_on_bandit_exited_chest)
+
+func _on_bandit_entered_chest() -> void:
+    $Bandit.hide()
+
+func _on_bandit_exited_chest() -> void:
+    $Bandit.show()

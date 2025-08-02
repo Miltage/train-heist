@@ -1,1 +1,2 @@
+class_name Carriage2D
 extends Sprite2D

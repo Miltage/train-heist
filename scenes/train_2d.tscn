@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=13 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
 [ext_resource type="Texture2D" uid="uid://dh4flpxjuanh6" path="res://krita/sheriff.png" id="3_823e8"]
 [ext_resource type="PackedScene" uid="uid://irdqu84riblt" path="res://scenes/bandit.tscn" id="3_jwsgh"]
 [ext_resource type="Texture2D" uid="uid://cjtxq5hhngj8g" path="res://krita/front4.png" id="4_kgevx"]
+[ext_resource type="PackedScene" uid="uid://bbfkc27lg5t4k" path="res://scenes/chest.tscn" id="4_ko07q"]
 [ext_resource type="Texture2D" uid="uid://0rvxjh72r8ye" path="res://krita/front2.png" id="6_ac5vk"]
 [ext_resource type="Texture2D" uid="uid://cwyhyb5clg7uv" path="res://krita/front3.png" id="7_jwsgh"]
 [ext_resource type="Texture2D" uid="uid://23cks6cw1hkv" path="res://krita/front1.png" id="8_mnbqa"]
@@ -39,6 +40,22 @@ position = Vector2(1756, 216)
 [node name="Carriage4" parent="." instance=ExtResource("1_a8ued")]
 position = Vector2(2436, 216)
 
+[node name="Chest1" parent="." instance=ExtResource("4_ko07q")]
+position = Vector2(1077.5, 295)
+scale = Vector2(1, 1)
+
+[node name="Chest2" parent="." instance=ExtResource("4_ko07q")]
+position = Vector2(1745, 295)
+scale = Vector2(1, 1)
+
+[node name="Chest3" parent="." instance=ExtResource("4_ko07q")]
+position = Vector2(2430, 295)
+scale = Vector2(1, 1)
+
+[node name="Chest4" parent="." instance=ExtResource("4_ko07q")]
+position = Vector2(382.5, 295)
+scale = Vector2(1, 1)
+
 [node name="Bandit" parent="." instance=ExtResource("3_jwsgh")]
 position = Vector2(290, 257.5)
 
@@ -57,10 +74,12 @@ position = Vector2(1082.5, 217.5)
 texture = ExtResource("6_ac5vk")
 
 [node name="Front3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1757.5, 217.5)
 texture = ExtResource("7_jwsgh")
 
 [node name="Front4" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2437.5, 217.5)
 texture = ExtResource("8_mnbqa")
 

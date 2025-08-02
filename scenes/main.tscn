@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=15 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0476t32bchwc" path="res://scripts/RailCircle.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cj662rcnm3kv3" path="res://scenes/train.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://o4y1iiqqeyhc" path="res://scenes/track_switch.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dpe02uec1ahlq" path="res://scenes/player.tscn" id="7_o6xl0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -66,10 +67,9 @@ _data = {
 }
 point_count = 2
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("track")]
 script = ExtResource("1_tbgi4")
 track = NodePath("LeftCircle")
-train = NodePath("")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
@@ -172,5 +172,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041919, 0, 6.70457)
 leftCircle = NodePath("../LeftCircle")
 rightCircle = NodePath("../RightCircle")
 startingTrack = NodePath("../BottomTrack")
+
+[node name="Player" parent="." instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -0.130847)
 
 [editable path="map"]

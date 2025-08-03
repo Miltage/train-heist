@@ -138,59 +138,48 @@ shape = SubResource("CircleShape2D_ko07q")
 
 [node name="TrackPiece" type="Sprite2D" parent="Track"]
 position = Vector2(-95, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece2" type="Sprite2D" parent="Track"]
 position = Vector2(315, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece3" type="Sprite2D" parent="Track"]
 position = Vector2(722.5, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece4" type="Sprite2D" parent="Track"]
 position = Vector2(1130, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece5" type="Sprite2D" parent="Track"]
 position = Vector2(1540, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece6" type="Sprite2D" parent="Track"]
 position = Vector2(1947.5, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece7" type="Sprite2D" parent="Track"]
 position = Vector2(2357.5, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece8" type="Sprite2D" parent="Track"]
 position = Vector2(2765, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece9" type="Sprite2D" parent="Track"]
 position = Vector2(3175, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="TrackPiece10" type="Sprite2D" parent="Track"]
 position = Vector2(3582.5, 445)
-scale = Vector2(1, 1)
 texture = ExtResource("12_qxubf")
 
 [node name="RoofArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoofArea"]
 position = Vector2(1400, 27.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qxubf")
 
 [node name="Darkness" type="ColorRect" parent="."]

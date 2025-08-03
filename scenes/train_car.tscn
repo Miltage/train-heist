@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://csq1hupty5t2b"]
+[gd_scene load_steps=5 format=3 uid="uid://csq1hupty5t2b"]
 
 [ext_resource type="Script" uid="uid://bhphw5nun33p1" path="res://scripts/TrainCar.gd" id="1_6jgwd"]
+[ext_resource type="PackedScene" uid="uid://cba3robm2wa3q" path="res://blender/carriage.fbx" id="2_w0owc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6jgwd"]
 size = Vector3(1.27319, 0.545166, 0.636719)
@@ -15,6 +16,7 @@ script = ExtResource("1_6jgwd")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370583, 0)
+visible = false
 size = Vector3(1.34277, 0.567383, 0.625)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,5 +34,10 @@ shape = SubResource("BoxShape3D_w0owc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07616, 1.12836, 0)
 visible = false
 
+[node name="carriage" parent="." instance=ExtResource("2_w0owc")]
+transform = Transform3D(-1.09278e-08, 0, -0.3, 0, 0.3, 0, 0.25, 0, -1.31134e-08, 0.0500466, 0.116232, 0.0387692)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="carriage"]

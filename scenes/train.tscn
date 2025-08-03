@@ -1,7 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj662rcnm3kv3"]
+[gd_scene load_steps=12 format=3 uid="uid://cj662rcnm3kv3"]
 
 [ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="1_68jl8"]
 [ext_resource type="Script" uid="uid://cj3kjfovx0su2" path="res://scripts/Train.gd" id="1_d43s7"]
+[ext_resource type="PackedScene" uid="uid://bogrxxuxo8wy4" path="res://blender/coalcar.fbx" id="3_6b7q7"]
+[ext_resource type="PackedScene" uid="uid://ct20slg0c8ale" path="res://blender/locomotive.fbx" id="4_muh0j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr42t"]
+albedo_color = Color(0.00417115, 0.00100476, 0.0014362, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d43s7"]
+albedo_color = Color(1, 0.67451, 0.498039, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6b7q7"]
+albedo_color = Color(0.74902, 0.14902, 0.317647, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muh0j"]
+albedo_color = Color(0.364706, 0.545098, 0.701961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1hdh"]
+albedo_color = Color(0.470588, 0.701961, 0.572549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwl36"]
+albedo_color = Color(0.25098, 0.333333, 0.470588, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flq6t"]
+albedo_color = Color(0.141176, 0.168627, 0.290196, 1)
 
 [node name="Train" type="Node3D"]
 script = ExtResource("1_d43s7")
@@ -11,20 +34,75 @@ transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, -0.0201145, -0.
 first = true
 startingOffset = 15.0
 
+[node name="Carriage" parent="TrainCar/carriage" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fr42t")
+surface_material_override/2 = SubResource("StandardMaterial3D_d43s7")
+
 [node name="TrainCar2" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.99999, -0.00162316, 0, 0.00162314, 0.999999, 0, 0, 0, 0.999992, 1.54325, -0.0248668, -0.0353775)
 startingOffset = 13.5
 
+[node name="Carriage" parent="TrainCar2/carriage" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fr42t")
+surface_material_override/2 = SubResource("StandardMaterial3D_6b7q7")
+
 [node name="TrainCar3" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 3.11662, -0.0248668, -0.0353775)
 startingOffset = 12.0
+
+[node name="Carriage" parent="TrainCar3/carriage" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fr42t")
+surface_material_override/2 = SubResource("StandardMaterial3D_muh0j")
 
 [node name="TrainCar4" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 4.68022, -0.0248668, -0.0353775)
 last = true
 startingOffset = 10.5
 
+[node name="Carriage" parent="TrainCar4/carriage" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fr42t")
+surface_material_override/2 = SubResource("StandardMaterial3D_o1hdh")
+
 [node name="StopWait" type="Timer" parent="."]
 wait_time = 4.0
 
+[node name="Coal" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.414, 0, 0)
+startingOffset = 16.5
+
+[node name="carriage" parent="Coal" index="4"]
+visible = false
+
+[node name="coalcar" parent="Coal" instance=ExtResource("3_6b7q7")]
+transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 1.13243, 0.0679025, 0.0103153)
+
+[node name="Locomotive" parent="." instance=ExtResource("1_68jl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50917, -0.0306017, -0.0309942)
+startingOffset = 18.0
+
+[node name="locomotive" parent="Locomotive" instance=ExtResource("4_muh0j")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -3.27102, 0.123605, 0)
+
+[node name="Locomotive" parent="Locomotive/locomotive" index="0"]
+surface_material_override/2 = SubResource("StandardMaterial3D_xwl36")
+surface_material_override/3 = SubResource("StandardMaterial3D_flq6t")
+
+[node name="carriage" parent="Locomotive" index="5"]
+transform = Transform3D(-1.09278e-08, 0, -0.3, 0, 0.3, 0, 0.25, 0, -1.31134e-08, -0.807585, 0.116232, 0.0387692)
+visible = false
+
 [connection signal="timeout" from="StopWait" to="." method="_on_stop_wait_timeout"]
+
+[editable path="TrainCar"]
+[editable path="TrainCar/carriage"]
+[editable path="TrainCar2"]
+[editable path="TrainCar2/carriage"]
+[editable path="TrainCar3"]
+[editable path="TrainCar3/carriage"]
+[editable path="TrainCar4"]
+[editable path="TrainCar4/carriage"]
+[editable path="Coal"]
+[editable path="Coal/carriage"]
+[editable path="Locomotive"]
+[editable path="Locomotive/locomotive"]
+[editable path="Locomotive/carriage"]

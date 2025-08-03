@@ -5,15 +5,17 @@ var playerOverlapping:bool = false
 var _timeElapsed:float
 
 func _on_body_entered(body:Node3D) -> void:
-	if (body is Player):
+	if (body is Player && Globals.holdingCoin):
 		playerOverlapping = true
+		Globals.show_world_interaction.emit("stash coin")
 
 func _on_body_exited(body:Node3D) -> void:
 	if (body is Player):
 		playerOverlapping = false
+		Globals.hide_world_interaction.emit()
 
 func _input(_event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("interact") && playerOverlapping):
+	if (Input.is_action_just_pressed("interact") && playerOverlapping && Globals.holdingCoin):
 		Globals.holdingCoin = false
 		Globals.coinsCollected += 1
 		Globals.coin_collected.emit()

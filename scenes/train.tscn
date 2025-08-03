@@ -37,6 +37,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0780142, 0.905109), 0.0, 0.0, 
 point_count = 3
 
 [node name="Train" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_d43s7")
 
 [node name="TrainCar" parent="." instance=ExtResource("1_68jl8")]

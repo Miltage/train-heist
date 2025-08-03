@@ -71,11 +71,14 @@ func _on_area_3d_body_entered(body:Node3D) -> void:
 	if (body is Player && last):
 		_playerBehind = true
 		(body as Player).followingCar = self
+		Globals.show_world_interaction.emit("board train")
 
 func _on_area_3d_body_exited(body:Node3D) -> void:
 	if (body is Player):
 		_playerBehind = false
+		Globals.hide_world_interaction.emit()
 
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("interact") && _playerBehind && last):
 		player_boarded.emit()
+		Globals.hide_world_interaction.emit()

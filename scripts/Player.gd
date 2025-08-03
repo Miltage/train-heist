@@ -53,6 +53,9 @@ func _process(delta: float) -> void:
 	velocity = velocity.lerp(-basis.z * v, 0.2)
 	move_and_slide()
 
+	$InteractPrompt.position = get_viewport().get_camera_3d().unproject_position(position) - ($InteractPrompt/MousePrompt.size + $InteractPrompt/InteractLabel.size) / 2
+	$InteractPrompt.scale = $InteractPrompt.scale.lerp(Vector2.ONE, 0.2)
+
 func follow_car() -> void:
 	var newPos = followingCar.global_position + followingCar.basis.x * -1.65
 	velocity = newPos - position
@@ -64,3 +67,19 @@ func set_boarded(newBoarded:bool) -> void:
 
 func is_running() -> bool:
 	return velocity.length() > velThreshold || boarded
+
+func _ready() -> void:
+	Globals.show_world_interaction.connect(_on_interaction_shown)
+	Globals.hide_world_interaction.connect(_on_interaction_hidden)
+	$InteractPrompt.hide()
+
+func _on_interaction_shown(prompt:String) -> void:
+	if (boarded): return
+	$InteractPrompt/InteractLabel.text = prompt
+	$InteractPrompt.show()
+	await get_tree().process_frame
+	$InteractPrompt.pivot_offset = ($InteractPrompt/MousePrompt.size + $InteractPrompt/InteractLabel.size)/2
+	$InteractPrompt.scale = Vector2.ONE * 1.4
+
+func _on_interaction_hidden() -> void:
+	$InteractPrompt.hide()

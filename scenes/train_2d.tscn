@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=19 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cac3njo8rfe5f" path="res://krita/wheel.png" id="9_jwsgh"]
 [ext_resource type="PackedScene" uid="uid://byet87hxjcpvt" path="res://scenes/ladder.tscn" id="10_mnbqa"]
 [ext_resource type="Texture2D" uid="uid://nn63sfcilogk" path="res://krita/track.png" id="12_qxubf"]
+[ext_resource type="Texture2D" uid="uid://co2th2qa1gnmy" path="res://krita/mouse_left.png" id="14_yqsqs"]
+[ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="15_sjq1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwsgh"]
 size = Vector2(22.5, 462.5)
@@ -205,6 +207,34 @@ offset_top = -167.0
 offset_right = 8957.0
 offset_bottom = 532.0
 color = Color(0, 0, 0, 1)
+
+[node name="InteractPrompt" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -180.0
+offset_top = -299.0
+offset_right = -27.0
+offset_bottom = -244.0
+scale = Vector2(2, 2)
+
+[node name="MousePrompt" type="TextureRect" parent="InteractPrompt"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("14_yqsqs")
+
+[node name="InteractLabel" type="Label" parent="InteractPrompt"]
+layout_mode = 2
+offset_left = 98.0
+offset_top = 24.0
+offset_right = 238.0
+offset_bottom = 62.0
+theme = ExtResource("15_sjq1d")
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 32
+text = "INTERACT"
+uppercase = true
 
 [connection signal="body_entered" from="BoardArea" to="." method="_on_board_area_body_entered"]
 [connection signal="body_exited" from="BoardArea" to="." method="_on_board_area_body_exited"]

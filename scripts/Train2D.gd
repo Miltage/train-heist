@@ -45,9 +45,13 @@ func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") && playerCanLeave):
 		leave_train()
 
+	$InteractPrompt.position = $Bandit.position - ($InteractPrompt/MousePrompt.size + $InteractPrompt/InteractLabel.size) / 2 - Vector2(0, 150)
+	$InteractPrompt.scale = $InteractPrompt.scale.lerp(Vector2.ONE, 0.2)
+
 func _ready() -> void:
 	$Bandit.hide()
 	$Bandit.position = Vector2(0, 0)
+	$InteractPrompt.hide()
 
 	_chests.append($Chest1)
 	_chests.append($Chest2)
@@ -60,7 +64,9 @@ func _ready() -> void:
 	open_chests()
 
 	_tunnelPos = 5000
-	Globals.game_ended.connect(_on_game_ended)
+	Globals.game_ended.connect(_on_game_ended)	
+	Globals.show_train_interaction.connect(_on_interaction_shown)
+	Globals.hide_train_interaction.connect(_on_interaction_hidden)
 
 func _on_bandit_entered_chest() -> void:
 	$Bandit.hide()
@@ -81,12 +87,17 @@ func leave_train() -> void:
 	$Bandit.onBoard = false
 	playerOnBoard = false
 	player_left.emit()
+	$InteractPrompt.hide()
 
 func _on_board_area_body_entered(body:Node2D) -> void:
-	if (body is Bandit): playerCanLeave = true
+	if (body is Bandit): 
+		playerCanLeave = true
+		Globals.show_train_interaction.emit("leave train")
 
 func _on_board_area_body_exited(body:Node2D) -> void:
-	if (body is Bandit): playerCanLeave = false
+	if (body is Bandit): 
+		playerCanLeave = false
+		Globals.hide_train_interaction.emit()
 
 func hide_coin() -> void:
 	for chest in _chests:
@@ -114,3 +125,14 @@ func enter_tunnel() -> void:
 func _on_game_ended(reason:Globals.GameEndReason) -> void:
 	if ((reason == Globals.GameEndReason.CAUGHT_BY_SHERIFF || reason == Globals.GameEndReason.FOUND_ON_BOARD)):
 		$Bandit.show()
+
+func _on_interaction_shown(prompt:String) -> void:
+	if (!playerOnBoard): return
+	$InteractPrompt/InteractLabel.text = prompt
+	$InteractPrompt.show()
+	await get_tree().process_frame
+	$InteractPrompt.pivot_offset = ($InteractPrompt/MousePrompt.size + $InteractPrompt/InteractLabel.size)/2
+	$InteractPrompt.scale = Vector2.ONE * 1.4
+
+func _on_interaction_hidden() -> void:
+	$InteractPrompt.hide()

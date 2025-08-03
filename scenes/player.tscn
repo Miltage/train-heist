@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpe02uec1ahlq"]
+[gd_scene load_steps=7 format=3 uid="uid://dpe02uec1ahlq"]
 
 [ext_resource type="PackedScene" uid="uid://btl748ms2kvb6" path="res://blender/player.fbx" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cd2g7rcoigx8j" path="res://scripts/Player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://co2th2qa1gnmy" path="res://krita/mouse_left.png" id="3_dqkch"]
+[ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="3_qhqgy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 transparency = 1
@@ -13,6 +15,7 @@ radius = 0.2
 height = 1.0
 
 [node name="Player" type="CharacterBody3D"]
+process_mode = 1
 axis_lock_linear_y = true
 script = ExtResource("1_g2els")
 
@@ -31,5 +34,30 @@ material_overlay = SubResource("StandardMaterial3D_g2els")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587898, 0)
 shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="InteractPrompt" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 153.0
+offset_bottom = 55.0
+
+[node name="MousePrompt" type="TextureRect" parent="InteractPrompt"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_dqkch")
+
+[node name="InteractLabel" type="Label" parent="InteractPrompt"]
+layout_mode = 2
+offset_left = 50.0
+offset_top = 12.0
+offset_right = 129.0
+offset_bottom = 33.0
+theme = ExtResource("3_qhqgy")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 18
+text = "INTERACT"
+uppercase = true
 
 [editable path="player"]

@@ -21,6 +21,7 @@ func _on_body_entered(body:Node3D) -> void:
 		if (trainCar.last): switch_tracks()
 	elif (body is Player):
 		_canPlayerSwitch = true
+		Globals.show_world_interaction.emit("switch track")
 
 func switch_car_to_track(car:TrainCar, track:Path3D) -> void:
 	car.set_track(track)
@@ -33,6 +34,7 @@ func set_flag(newFlag:bool) -> void:
 func _on_body_exited(body: Node3D) -> void:
 	if (body is Player):
 		_canPlayerSwitch = false
+		Globals.hide_world_interaction.emit()
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("interact") && _canPlayerSwitch):

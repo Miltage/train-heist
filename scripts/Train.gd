@@ -52,7 +52,7 @@ func stop() -> void:
 	$StopWait.start()
 
 func _on_stop_wait_timeout() -> void:
-	_baseSpeed += 0.05
+	_baseSpeed += 0.035
 	targetSpeed = min(_baseSpeed, 3.5)
 
 func get_pos() -> Vector3:

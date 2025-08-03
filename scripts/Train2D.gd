@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 	$Wheel6.rotation += delta * speed
 	$Wheel7.rotation += delta * speed
 	$Wheel8.rotation += delta * speed
+	$Wheel9.rotation += delta * speed
+	$Wheel10.rotation += delta * speed
 
 	_timeElapsed += delta * speed
 	if (_timeElapsed > 2.0): _timeElapsed = 0.0
@@ -66,12 +68,14 @@ func _on_bandit_exited_chest() -> void:
 func board_train() -> void:
 	$Bandit.show()
 	$Bandit.dir = 1
+	$Bandit.onBoard = true
 	$Bandit.position = $Entry.position
 	playerOnBoard = true
 	playerCanLeave = false
 
 func leave_train() -> void:
 	$Bandit.hide()
+	$Bandit.onBoard = false
 	playerOnBoard = false
 	player_left.emit()
 

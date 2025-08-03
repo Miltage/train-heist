@@ -15,3 +15,4 @@ func _input(_event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("interact") && playerOverlapping):
 		Globals.holdingCoin = false
 		Globals.coinsCollected += 1
+		Globals.coin_collected.emit()

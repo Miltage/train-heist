@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=17 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://on77mgblags8" path="res://scenes/sheriff.tscn" id="6_qxubf"]
 [ext_resource type="PackedScene" uid="uid://dr47mpigdugv1" path="res://scenes/carriage_area.tscn" id="7_ac5vk"]
 [ext_resource type="Texture2D" uid="uid://cwyhyb5clg7uv" path="res://krita/front3.png" id="7_jwsgh"]
+[ext_resource type="Texture2D" uid="uid://2i413f5haxey" path="res://krita/coal_car.png" id="7_pkfax"]
 [ext_resource type="Texture2D" uid="uid://cac3njo8rfe5f" path="res://krita/wheel.png" id="9_jwsgh"]
 [ext_resource type="PackedScene" uid="uid://byet87hxjcpvt" path="res://scenes/ladder.tscn" id="10_mnbqa"]
 [ext_resource type="Texture2D" uid="uid://nn63sfcilogk" path="res://krita/track.png" id="12_qxubf"]
@@ -60,6 +61,12 @@ position = Vector2(382.5, 295)
 [node name="Bandit" parent="." instance=ExtResource("3_jwsgh")]
 position = Vector2(290, 257.5)
 
+[node name="CoalCar" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2957.42, 271.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_pkfax")
+
 [node name="Sheriff" parent="." node_paths=PackedStringArray("bandit") instance=ExtResource("6_qxubf")]
 position = Vector2(732.501, 265)
 bandit = NodePath("../Bandit")
@@ -85,6 +92,16 @@ texture = ExtResource("9_jwsgh")
 
 [node name="Wheel2" type="Sprite2D" parent="."]
 position = Vector2(2580, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel9" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2880, 367.5)
+texture = ExtResource("9_jwsgh")
+
+[node name="Wheel10" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(3040, 367.5)
 texture = ExtResource("9_jwsgh")
 
 [node name="Wheel3" type="Sprite2D" parent="."]

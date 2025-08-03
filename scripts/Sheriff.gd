@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 	$Hands.flip_h = flip_h
 	$HandsGun.flip_h = flip_h
 
-	if (abs(position.x - bandit.position.x) < 500 && abs(position.y - bandit.position.y) < 100 && bandit.visible): 
+	if (abs(position.x - bandit.position.x) < 500 && abs(position.y - bandit.position.y) < 100 && bandit.visible && bandit.onBoard): 
 		aggro = true
 		if (_lastAggro != aggro): pop()
 	elif (aggro && abs(position.x - bandit.position.x) > 600):
@@ -80,7 +80,7 @@ func turn_around() -> void:
 
 func catch_bandit() -> void:
 	var dy:float = bandit.position.y - position.y
-	if (abs(dy) < 100):
+	if (abs(dy) < 100 && bandit.onBoard):
 		bandit.show()
 		Globals.game_ended.emit(Globals.GameEndReason.CAUGHT_BY_SHERIFF)
 

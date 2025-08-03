@@ -5,6 +5,7 @@ var speed:float = 100
 var dir:float = 1
 var overlappingLadder:bool = false
 var onLadder:bool = false
+var onBoard:bool = false
 
 var _timeElapsed:float
 var _targetVelocity:Vector2
@@ -67,6 +68,7 @@ func _physics_process(delta) -> void:
 	scale = scale.lerp(Vector2.ONE, 0.4)
 
 func jump() -> void:
+	if (!is_on_floor()): return
 	velocity.y = -220
 	scale = Vector2.ONE * 1.15
 
@@ -75,3 +77,7 @@ func pop() -> void:
 
 func _ready() -> void:
 	visibility_changed.connect(pop)
+	Globals.game_ended.connect(_on_game_ended)
+
+func _on_game_ended(_reason:Globals.GameEndReason) -> void:
+	scale = Vector2.ONE

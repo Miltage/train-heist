@@ -10,12 +10,21 @@ func _ready() -> void:
 	$SaloonStop.train_entered.connect(_on_train_reached_stop)
 	$BankStop.train_entered.connect(_on_train_reached_stop)
 	Globals.game_restarted.connect(_on_game_restarted)
+	Globals.coin_collected.connect(_on_coin_collected)
 
 	Globals.holdingCoin = false
+	Globals.coinsCollected = 0
+
+	# while(true):
+	# 	await get_tree().create_timer(1.0).timeout
+	# 	Globals.coinsCollected += 1
+	# 	Globals.coin_collected.emit()
 
 func _process(_delta: float) -> void:
 	$HorseDust.position = $Player.position
 	$HorseDust.emitting = $Player.velocity.length() > 1.0 || $Player.boarded
+	$CoinsLabel.scale = lerp($CoinsLabel.scale, Vector2.ONE, 0.3)
+	$CoinIcon.scale = lerp($CoinsLabel.scale, Vector2.ONE, 0.4)
 
 func _on_player_boarded_train() -> void:
 	if ($Player.boarded): return
@@ -43,3 +52,9 @@ func _on_tunnel_body_entered(body:Node3D) -> void:
 	if (body is TrainCar && (body as TrainCar).first): 
 		print("train entered tunnel")
 		$Train2D.enter_tunnel()
+
+func _on_coin_collected() -> void:
+	$CoinsLabel.text = "%d / %d" % [Globals.coinsCollected, Globals.COINS_TO_WIN]
+	$CoinsLabel.pivot_offset = $CoinsLabel.size / 2
+	$CoinsLabel.scale = Vector2.ONE * 1.5
+	$CoinIcon.scale = Vector2.ONE * 1.5

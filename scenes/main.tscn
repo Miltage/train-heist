@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=41 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bj8dmem6344pd" path="res://scenes/train_stop.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://nvt502tv3t5b" path="res://scenes/end_screen.tscn" id="11_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://tfyx0prmebrg" path="res://krita/coin.png" id="13_a8y0u"]
 [ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="13_trceg"]
+[ext_resource type="FontFile" uid="uid://qsb4xhalkhbk" path="res://fonts/vinivicious.ttf" id="15_jkv2x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
 render_priority = 0
@@ -443,13 +445,21 @@ shape = SubResource("CylinderShape3D_a8y0u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6273, 0.364791, -8.27881)
 shape = SubResource("CylinderShape3D_a8y0u")
 
+[node name="CoinIcon" type="TextureRect" parent="."]
+offset_right = 65.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("13_a8y0u")
+
 [node name="CoinsLabel" type="Label" parent="."]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 31.0
+offset_left = 64.0
+offset_top = 15.0
+offset_right = 127.0
+offset_bottom = 55.0
 theme = ExtResource("13_trceg")
+theme_override_fonts/font = ExtResource("15_jkv2x")
 text = "0 / 3"
+horizontal_alignment = 1
 
 [connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
 [connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]

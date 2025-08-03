@@ -12,7 +12,7 @@ func _on_game_ended(reason:Globals.GameEndReason) -> void:
 		Globals.GameEndReason.CAUGHT_BY_SHERIFF: %Reason.text = "You were caught by the sheriff!"
 		Globals.GameEndReason.FOUND_ON_BOARD: %Reason.text = "You were found on board!"
 		Globals.GameEndReason.KILLED_IN_TUNNEL: %Reason.text = "You were killed in the tunnel!"
-		Globals.GameEndReason.COLLECTED_ALL_COINS: %Reason.text = "You collected all 5 coins!"
+		Globals.GameEndReason.COLLECTED_ALL_COINS: %Reason.text = "You collected all %d coins!" % Globals.COINS_TO_WIN
 
 	match (reason):
 		Globals.GameEndReason.CAUGHT_BY_SHERIFF: %Title.text = "YOU LOST!"

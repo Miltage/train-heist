@@ -30,15 +30,19 @@ func _on_body_exited(body:Node2D) -> void:
 func on_primary_interact() -> void:
 	if (state == ChestState.CLOSED):
 		state = ChestState.OPEN_COIN if containsCoins else ChestState.OPEN
+		AudioManager.play_chest_open()
 	elif (state == ChestState.OPEN):
 		state = ChestState.HIDING
 		bandit_entered.emit()
+		AudioManager.play_chest_close()
 	elif (state == ChestState.HIDING):
 		state = ChestState.OPEN
 		bandit_exited.emit()
+		AudioManager.play_chest_open()
 	elif (state == ChestState.OPEN_COIN):
 		Globals.holdingCoin = true
 		state = ChestState.OPEN
+		AudioManager.play_grab_coin()
 
 func on_secondary_interact() -> void:
 	if (state == ChestState.OPEN):
@@ -82,7 +86,7 @@ func open() -> void:
 
 func _on_game_ended(reason:Globals.GameEndReason) -> void:
 	if ((reason == Globals.GameEndReason.CAUGHT_BY_SHERIFF || reason == Globals.GameEndReason.FOUND_ON_BOARD) && state == ChestState.HIDING):
-		print("open")
+		AudioManager.play_chest_open()
 		open()
 
 func _ready() -> void:

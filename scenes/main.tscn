@@ -47,30 +47,6 @@ shader_parameter/_glossiness = 0.1
 shader_parameter/_rim_size = 1.0
 shader_parameter/_rim_smoothness = 0.01
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
-radius = 2.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_tipki"]
-radius = 2.27648
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_85g3d"]
-radius = 1.00213
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_choun"]
-radius = 0.640292
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_85g3d"]
-size = Vector3(15.2109, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ya4ey"]
-size = Vector3(11.333, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
-size = Vector3(50, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
-size = Vector3(1, 1, 26.2852)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
 render_priority = 0
 shader = ExtResource("2_sugp2")
@@ -109,6 +85,30 @@ shader_parameter/_specular_strength = 0.131
 shader_parameter/_glossiness = 0.371
 shader_parameter/_rim_size = 0.493
 shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
+radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tipki"]
+radius = 2.27648
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_85g3d"]
+radius = 1.00213
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_choun"]
+radius = 0.640292
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85g3d"]
+size = Vector3(15.2109, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ya4ey"]
+size = Vector3(11.333, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
+size = Vector3(50, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
+size = Vector3(1, 1, 26.2852)
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 ambient_light_source = 2
@@ -189,6 +189,21 @@ cast_shadow = 0
 
 [node name="Floor" parent="map" index="11"]
 surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
+
+[node name="Mountain" parent="map" index="32"]
+surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
+
+[node name="Rock" parent="map" index="34"]
+surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
+
+[node name="Rock_001" parent="map" index="35"]
+surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
+
+[node name="Rock_002" parent="map" index="36"]
+surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
+
+[node name="Saloon" parent="map" index="37"]
+surface_material_override/0 = SubResource("ShaderMaterial_eb6dy")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93729, 0.399799)
@@ -282,21 +297,6 @@ shape = SubResource("BoxShape3D_tipki")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="map/Boundaries"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5293, 0, -3.48296)
 shape = SubResource("BoxShape3D_tipki")
-
-[node name="Mountain" parent="map" index="34"]
-surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
-
-[node name="Rock" parent="map" index="36"]
-surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
-
-[node name="Rock_001" parent="map" index="37"]
-surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
-
-[node name="Rock_002" parent="map" index="38"]
-surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
-
-[node name="Saloon" parent="map" index="39"]
-surface_material_override/0 = SubResource("ShaderMaterial_eb6dy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.633948, 0.773376, 0, -0.773376, 0.633948, 0.60743, 35.039, 33.521)

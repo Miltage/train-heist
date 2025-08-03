@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bh5ko4iquo6q0"
+path="res://.godot/imported/ladder (4).ogg-aa68f69eaebc68a1b00fb1f41a752ab1.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/ladder (4).ogg"
+dest_files=["res://.godot/imported/ladder (4).ogg-aa68f69eaebc68a1b00fb1f41a752ab1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,5 +1,5 @@
 class_name Sheriff
-extends AnimatedSprite2D
+extends Node2D
 
 const FIRST_POSITION:int = 50
 const SECOND_POSITION:int = 2800
@@ -17,6 +17,7 @@ var aggro:bool = false
 
 var _lastAggro:bool = false
 var _timeElapsed:float
+var _footstepTime:float
 
 func _ready() -> void:
 	targetPos = SECOND_POSITION
@@ -40,25 +41,30 @@ func _process(delta: float) -> void:
 
 	if (abs(d) > 100): stopped = false
 
-	if (abs(velocity) > 5.0): play("running")
-	else: play("default")
+	if (abs(velocity) > 5.0): 
+		$Sprite.play("running")
+		_footstepTime += delta
+	else: 
+		$Sprite.play("default")
 
 	_timeElapsed += delta
 
-	position.y = 270 - abs(sin(_timeElapsed * 10)) * abs(velocity) * 0.1
-	$Hands.position.y = sin(_timeElapsed * 15) * abs(velocity) * 0.035
+	position.y = 350 - abs(sin(_timeElapsed * 10)) * abs(velocity) * 0.1
+	$Hands.position.y = sin(_timeElapsed * 15) * abs(velocity) * 0.035 - 80
 	$HandsGun.position.y = $Hands.position.y
 
 	$Hands.visible = !aggro
 	$HandsGun.visible = aggro
 
-	flip_h = dir < 0
-	$Hands.flip_h = flip_h
-	$HandsGun.flip_h = flip_h
+	$Sprite.flip_h = dir < 0
+	$Hands.flip_h = $Sprite.flip_h
+	$HandsGun.flip_h = $Sprite.flip_h
 
-	if (abs(position.x - bandit.position.x) < 500 && abs(position.y - bandit.position.y) < 100 && bandit.visible && bandit.onBoard): 
+	if (abs(position.x - bandit.position.x) < 500 && abs(position.y - bandit.position.y) < 20 && bandit.visible && bandit.onBoard): 
 		aggro = true
-		if (_lastAggro != aggro): pop()
+		if (_lastAggro != aggro): 
+			pop()
+			AudioManager.play_sheriff_alert()
 	elif (aggro && abs(position.x - bandit.position.x) > 600):
 		aggro = false
 		if (_lastAggro != aggro): pop()
@@ -66,6 +72,10 @@ func _process(delta: float) -> void:
 
 	scale = scale.lerp(Vector2.ONE, 0.4)
 	_lastAggro = aggro
+
+	if (_footstepTime > 36.0 / speed):
+		_footstepTime = 0.0
+		AudioManager.play_footstep()
 
 func turn_around() -> void:
 	stopped = true

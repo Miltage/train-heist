@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 
 	if ($Bandit.position.x > $Darkness.position.x && $Bandit.position.x < $Darkness.position.x + $Darkness.size.x && playerOnRoof):
 		Globals.game_ended.emit(Globals.GameEndReason.KILLED_IN_TUNNEL)
+		AudioManager.play_death()
 
 	if (Input.is_action_just_pressed("interact") && playerCanLeave):
 		leave_train()
@@ -111,10 +112,14 @@ func open_chests() -> void:
 		chest.open()
 
 func _on_roof_area_body_entered(body: Node2D) -> void:
-	if (body is Bandit): playerOnRoof = true
+	if (body is Bandit): 
+		playerOnRoof = true
+		(body as Bandit).onRoof = true
 
 func _on_roof_area_body_exited(body: Node2D) -> void:
-	if (body is Bandit): playerOnRoof = false
+	if (body is Bandit): 
+		playerOnRoof = false
+		(body as Bandit).onRoof = false
 
 func player_can_be_found() -> bool:
 	return playerOnBoard && !playerOnRoof

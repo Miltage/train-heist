@@ -15,6 +15,7 @@ var _timeElapsed:float
 var _bounce:float
 var _run:float
 var _anim:bool
+var _gallopTime:float
 
 func _process(delta: float) -> void:
 	_timeElapsed += delta
@@ -23,6 +24,12 @@ func _process(delta: float) -> void:
 	if (_run > 0.2):
 		_run = 0.0
 		_anim = !_anim
+
+	if (is_running()):
+		_gallopTime += delta
+		if (_gallopTime > 0.5):
+			AudioManager.play_gallop()
+			_gallopTime = 0.0
 
 	$player/Hands.visible = !boarded && !Globals.holdingCoin
 	$player/HandsCoin.visible = !boarded && Globals.holdingCoin

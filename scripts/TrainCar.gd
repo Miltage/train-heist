@@ -3,6 +3,7 @@ extends RigidBody3D
 
 signal player_boarded
 
+@export var locomotive:bool
 @export var last:bool
 @export var first:bool
 @export var leftCircle:Path3D

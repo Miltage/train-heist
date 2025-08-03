@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cncndic5t2irf"
+path="res://.godot/imported/footstep_roof (2).ogg-26d1f6738e9356bbb8b30dec2e9687e5.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/footstep_roof (2).ogg"
+dest_files=["res://.godot/imported/footstep_roof (2).ogg-26d1f6738e9356bbb8b30dec2e9687e5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

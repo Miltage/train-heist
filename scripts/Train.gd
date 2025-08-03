@@ -14,6 +14,7 @@ var targetSpeed:float = 0
 var _baseSpeed:float = 1.0
 var _stopped:bool
 var _cars:Array
+var _volume:float
 
 func _ready() -> void:
 	targetSpeed = _baseSpeed
@@ -42,6 +43,9 @@ func _process(_delta: float) -> void:
 		car.speed = speed
 
 	$SmokeStack.position = $Locomotive.position + Vector3(0, 1.4, 0) + $Locomotive.basis.x * 0.7
+
+	_volume = lerp(_volume, min(-20 + 16 * speed, 0.0), 0.01)
+	AudioServer.set_bus_volume_db(1, _volume)
 
 func _on_player_boarded() -> void:
 	player_boarded.emit()

@@ -30,6 +30,7 @@ func set_flag(newFlag:bool) -> void:
 	flag = newFlag
 	$arrow1.visible = !flag
 	$arrow2.visible = flag
+	AudioManager.play_switch()
 
 func _on_body_exited(body: Node3D) -> void:
 	if (body is Player):

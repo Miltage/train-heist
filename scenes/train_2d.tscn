@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://brbwxgxrrsa7n"]
+[gd_scene load_steps=21 format=3 uid="uid://brbwxgxrrsa7n"]
 
 [ext_resource type="PackedScene" uid="uid://cl4ugtlkr2pph" path="res://scenes/carriage_2d.tscn" id="1_a8ued"]
 [ext_resource type="Script" uid="uid://bjmx3r3rihifq" path="res://scripts/Train2D.gd" id="1_qe48q"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://nn63sfcilogk" path="res://krita/track.png" id="12_qxubf"]
 [ext_resource type="Texture2D" uid="uid://co2th2qa1gnmy" path="res://krita/mouse_left.png" id="14_yqsqs"]
 [ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="15_sjq1d"]
+[ext_resource type="AudioStream" uid="uid://dhktqrap8cf4" path="res://audio/train_ambience.ogg" id="16_sjq1d"]
+[ext_resource type="AudioStream" uid="uid://1ma70g8rw08t" path="res://audio/steam_train.ogg" id="17_kxn3i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwsgh"]
 size = Vector2(22.5, 462.5)
@@ -61,7 +63,7 @@ position = Vector2(2430, 295)
 position = Vector2(382.5, 295)
 
 [node name="Bandit" parent="." instance=ExtResource("3_jwsgh")]
-position = Vector2(290, 257.5)
+position = Vector2(790, 257.5)
 
 [node name="CoalCar" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -235,6 +237,18 @@ theme_override_constants/outline_size = 18
 theme_override_font_sizes/font_size = 32
 text = "INTERACT"
 uppercase = true
+
+[node name="Din" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_sjq1d")
+volume_db = 2.0
+autoplay = true
+bus = &"Train"
+
+[node name="Steam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_kxn3i")
+volume_db = 2.0
+autoplay = true
+bus = &"Train"
 
 [connection signal="body_entered" from="BoardArea" to="." method="_on_board_area_body_entered"]
 [connection signal="body_exited" from="BoardArea" to="." method="_on_board_area_body_exited"]

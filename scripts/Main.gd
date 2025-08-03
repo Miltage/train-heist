@@ -15,6 +15,8 @@ func _ready() -> void:
 	Globals.holdingCoin = false
 	Globals.coinsCollected = 0
 
+	AudioManager.start_music()
+
 	# while(true):
 	# 	await get_tree().create_timer(1.0).timeout
 	# 	Globals.coinsCollected += 1
@@ -32,7 +34,9 @@ func _on_player_boarded_train() -> void:
 	$Train2D.board_train()
 
 func _on_player_disembarked_train() -> void:
+	if (!$Player.boarded): return
 	$Player.boarded = false
+	AudioManager.play_horse()
 
 func _on_train_reached_stop() -> void:
 	train.stop()
@@ -51,6 +55,8 @@ func _on_game_restarted() -> void:
 func _on_tunnel_body_entered(body:Node3D) -> void:
 	if (body is TrainCar && (body as TrainCar).first): 
 		$Train2D.enter_tunnel()
+	elif (body is TrainCar && (body as TrainCar).locomotive): 
+		AudioManager.play_train_horn()
 
 func _on_coin_collected() -> void:
 	$CoinsLabel.text = "%d / %d" % [Globals.coinsCollected, Globals.COINS_TO_WIN]

@@ -10,7 +10,7 @@ func _on_game_ended(reason:Globals.GameEndReason) -> void:
 
 	match (reason):
 		Globals.GameEndReason.CAUGHT_BY_SHERIFF: %Reason.text = "You were caught by the sheriff!"
-		Globals.GameEndReason.FOUND_ON_BOARD: %Reason.text = "You were found on board!\n(You will be discovered on the train while it is stopped, but you can hide on the roof!)"
+		Globals.GameEndReason.FOUND_ON_BOARD: %Reason.text = "You were found on board!\n(You will be discovered on the train when it stops)\n(But you can hide on the roof!)"
 		Globals.GameEndReason.KILLED_IN_TUNNEL: %Reason.text = "You were killed in the tunnel!\n(You cannot be on the roof while the train is in the tunnel)"
 		Globals.GameEndReason.COLLECTED_ALL_COINS: %Reason.text = "You collected all %d coins!" % Globals.COINS_TO_WIN
 
@@ -21,6 +21,7 @@ func _on_game_ended(reason:Globals.GameEndReason) -> void:
 		Globals.GameEndReason.COLLECTED_ALL_COINS: %Title.text = "YOU WON!"
 	
 	show()
+	AudioManager.start_end_theme()
 
 func _on_play_again_button_pressed() -> void:
 	Globals.game_restarted.emit()

@@ -6,9 +6,12 @@ var dir:float = 1
 var overlappingLadder:bool = false
 var onLadder:bool = false
 var onBoard:bool = false
+var onRoof:bool = false
 
 var _timeElapsed:float
 var _targetVelocity:Vector2
+var _footstepTime:float
+var _ladderTime:float
 
 func get_input():
 	if (!visible): 
@@ -67,10 +70,22 @@ func _physics_process(delta) -> void:
 
 	scale = scale.lerp(Vector2.ONE, 0.4)
 
+	if (visible):
+		if (abs(velocity.x) > 0.1): _footstepTime += delta
+		elif (abs(velocity.y) > 0.1): _ladderTime += delta
+		if (is_on_floor() && _footstepTime > 36.0 / speed):
+			_footstepTime = 0.0
+			if (onRoof): AudioManager.play_roof_footstep()
+			else: AudioManager.play_footstep()
+		elif (_ladderTime > 24.0 / speed):
+			_ladderTime = 0.0
+			AudioManager.play_ladder()
+
 func jump() -> void:
 	if (!is_on_floor()): return
 	velocity.y = -220
 	scale = Vector2.ONE * 1.15
+	AudioManager.play_jump()
 
 func pop() -> void:
 	scale = Vector2.ONE * 1.25
@@ -79,5 +94,9 @@ func _ready() -> void:
 	visibility_changed.connect(pop)
 	Globals.game_ended.connect(_on_game_ended)
 
-func _on_game_ended(_reason:Globals.GameEndReason) -> void:
+func _on_game_ended(reason:Globals.GameEndReason) -> void:
 	scale = Vector2.ONE
+
+	match (reason):
+		Globals.GameEndReason.CAUGHT_BY_SHERIFF: AudioManager.play_caught()
+		Globals.GameEndReason.FOUND_ON_BOARD: AudioManager.play_caught()

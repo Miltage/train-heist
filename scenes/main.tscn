@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://dpe02uec1ahlq" path="res://scenes/player.tscn" id="7_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://xy32g4g0i1kh" path="res://krita/sky_gradient.png" id="8_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://brbwxgxrrsa7n" path="res://scenes/train_2d.tscn" id="8_tipki"]
-[ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bj8dmem6344pd" path="res://scenes/train_stop.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://cihr0yh7xcg31" path="res://scenes/hideout.tscn" id="10_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://nvt502tv3t5b" path="res://scenes/end_screen.tscn" id="11_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://tfyx0prmebrg" path="res://krita/coin.png" id="13_a8y0u"]
 [ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="13_trceg"]
 [ext_resource type="FontFile" uid="uid://qsb4xhalkhbk" path="res://fonts/vinivicious.ttf" id="15_jkv2x"]
+[ext_resource type="FontFile" uid="uid://dp6wbtushwimb" path="res://fonts/LilitaOne-Regular.ttf" id="16_jbj1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
 render_priority = 0
@@ -128,8 +129,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
 size = Vector3(15.9873, 1, 1)
@@ -432,12 +431,8 @@ texture = ExtResource("8_eb6dy")
 position = Vector2(77, 515)
 train = NodePath("../Train")
 
-[node name="Hideout" type="Area3D" parent="."]
+[node name="Hideout" parent="." instance=ExtResource("10_jbj1t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302784, 0, -4.82619)
-script = ExtResource("9_85g3d")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hideout"]
-shape = SubResource("BoxShape3D_choun")
 
 [node name="SaloonStop" parent="." instance=ExtResource("10_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7602, 0.0673518, 0.00144792)
@@ -510,9 +505,29 @@ theme_override_fonts/font = ExtResource("15_jkv2x")
 text = "0 / 3"
 horizontal_alignment = 1
 
+[node name="SaloonLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15.3035, 0.069, -0.052456)
+pixel_size = 0.05
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 0.509804)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SALOON"
+font = ExtResource("16_jbj1t")
+uppercase = true
+
+[node name="BankLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 16.0908, 0.069, 0.0899905)
+pixel_size = 0.05
+shaded = true
+double_sided = false
+modulate = Color(0, 0, 0, 0.509804)
+outline_modulate = Color(0, 0, 0, 0)
+text = "BANK"
+font = ExtResource("16_jbj1t")
+uppercase = true
+
 [connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
-[connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]
-[connection signal="body_exited" from="Hideout" to="Hideout" method="_on_body_exited"]
 [connection signal="body_entered" from="Tunnel" to="." method="_on_tunnel_body_entered"]
 
 [editable path="map"]

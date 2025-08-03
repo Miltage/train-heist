@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cihr0yh7xcg31"]
+
+[ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="1_uy1vd"]
+[ext_resource type="PackedScene" uid="uid://c2w21cgv51v42" path="res://blender/arrow.fbx" id="2_kwc7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
+
+[node name="Hideout" type="Area3D"]
+script = ExtResource("1_uy1vd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_choun")
+
+[node name="arrow" parent="." instance=ExtResource("2_kwc7s")]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 0.0447998, 2.76917)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

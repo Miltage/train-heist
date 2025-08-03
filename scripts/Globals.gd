@@ -19,6 +19,7 @@ signal show_world_interaction(prompt:String)
 signal hide_world_interaction()
 signal show_train_interaction(prompt:String)
 signal hide_train_interaction()
+signal bandit_roof_position_changed(index:int)
 
 const COINS_TO_WIN:int = 3
 
@@ -34,6 +35,7 @@ func _init() -> void:
 	hide_world_interaction.connect(_on_world_interaction_hidden)
 	show_train_interaction.connect(_on_train_interaction_shown)
 	hide_train_interaction.connect(_on_train_interaction_hidden)
+	bandit_roof_position_changed.connect(_on_bandit_roof_position_changed)
 
 func _on_game_ended(_reason:GameEndReason) -> void:
 	state = GameState.OVER
@@ -56,4 +58,7 @@ func _on_train_interaction_shown(_prompt:String) -> void:
 	pass
 
 func _on_train_interaction_hidden() -> void:
+	pass
+
+func _on_bandit_roof_position_changed(_index:int) -> void:
 	pass

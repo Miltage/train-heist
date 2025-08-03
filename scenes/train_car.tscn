@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csq1hupty5t2b"]
+[gd_scene load_steps=6 format=3 uid="uid://csq1hupty5t2b"]
 
 [ext_resource type="Script" uid="uid://bhphw5nun33p1" path="res://scripts/TrainCar.gd" id="1_6jgwd"]
 [ext_resource type="PackedScene" uid="uid://cba3robm2wa3q" path="res://blender/carriage.fbx" id="2_w0owc"]
+[ext_resource type="PackedScene" uid="uid://cjoqhruo6pvcj" path="res://blender/bandit.fbx" id="3_57vnc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6jgwd"]
 size = Vector3(1.27319, 0.545166, 0.636719)
@@ -36,6 +37,10 @@ visible = false
 
 [node name="carriage" parent="." instance=ExtResource("2_w0owc")]
 transform = Transform3D(-1.09278e-08, 0, -0.3, 0, 0.3, 0, 0.25, 0, -1.31134e-08, 0.0500466, 0.116232, 0.0387692)
+
+[node name="bandit" parent="." instance=ExtResource("3_57vnc")]
+transform = Transform3D(5.24537e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, 5.24537e-08, -0.0821097, 1.10457, 0)
+visible = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

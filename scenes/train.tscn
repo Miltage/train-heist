@@ -43,6 +43,7 @@ script = ExtResource("1_d43s7")
 [node name="TrainCar" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, -0.0201145, -0.0248668, -0.0353775)
 first = true
+index = 3
 startingOffset = 15.0
 
 [node name="Carriage" parent="TrainCar/carriage" index="0"]
@@ -51,6 +52,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_d43s7")
 
 [node name="TrainCar2" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.99999, -0.00162316, 0, 0.00162314, 0.999999, 0, 0, 0, 0.999992, 1.54325, -0.0248668, -0.0353775)
+index = 2
 startingOffset = 13.5
 
 [node name="Carriage" parent="TrainCar2/carriage" index="0"]
@@ -59,6 +61,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_6b7q7")
 
 [node name="TrainCar3" parent="." instance=ExtResource("1_68jl8")]
 transform = Transform3D(0.999992, 0, 0, 0, 1, 0, 0, 0, 0.999992, 3.11662, -0.0248668, -0.0353775)
+index = 1
 startingOffset = 12.0
 
 [node name="Carriage" parent="TrainCar3/carriage" index="0"]

@@ -6,6 +6,7 @@ signal player_boarded
 @export var locomotive:bool
 @export var last:bool
 @export var first:bool
+@export var index:int
 @export var leftCircle:Path3D
 @export var rightCircle:Path3D
 @export var startingTrack:Path3D
@@ -22,6 +23,8 @@ var speed:float
 func _ready() -> void:
 	dir = 1
 	_track = startingTrack
+	$bandit.hide()
+	Globals.bandit_roof_position_changed.connect(_on_bandit_roof_position_changed)
 
 func _physics_process(delta: float) -> void:
 	t += delta * speed * dir
@@ -31,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		_velocity = nextPos - global_position
 		move_and_collide(_velocity)
 		global_basis = trackTransform.basis.rotated(Vector3.UP, PI/2 * dir)
-		#print(t)
+
 		if (t >= _track.curve.get_baked_length() || t <= 0.0):
 			if (is_on_circle()): 
 				t = _track.curve.get_baked_length() if (t <= 0.0) else 0.0
@@ -83,3 +86,13 @@ func _input(_event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("interact") && _playerBehind && last):
 		player_boarded.emit()
 		Globals.hide_world_interaction.emit()
+
+func show_bandit() -> void:
+	$bandit.show()
+
+func hide_bandit() -> void:
+	$bandit.hide()
+
+func _on_bandit_roof_position_changed(i:int) -> void:
+	if (i == index): show_bandit()
+	else: hide_bandit()

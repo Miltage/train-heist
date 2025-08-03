@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtuupsqsjeqjx"]
+
+[ext_resource type="Script" uid="uid://5vcu16d3nyln" path="res://scripts/RoofSection.gd" id="1_cfqti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b78i7"]
+size = Vector2(475, 112.5)
+
+[node name="RoofSection1" type="Area2D"]
+script = ExtResource("1_cfqti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.10352e-05, -1.25002)
+shape = SubResource("RectangleShape2D_b78i7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

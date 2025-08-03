@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=45 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -167,6 +167,9 @@ radius = 0.412514
 [sub_resource type="SphereShape3D" id="SphereShape3D_muem4"]
 radius = 0.664364
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_dp3eg"]
+radius = 0.379873
+
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 process_mode = 3
 script = ExtResource("1_tbgi4")
@@ -202,7 +205,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
 [node name="Rock_002" parent="map" index="36"]
 surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
 
-[node name="Saloon" parent="map" index="37"]
+[node name="Rock_003" parent="map" index="37"]
+surface_material_override/0 = SubResource("ShaderMaterial_jbj1t")
+
+[node name="Saloon" parent="map" index="38"]
 surface_material_override/0 = SubResource("ShaderMaterial_eb6dy")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
@@ -341,6 +347,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, -6.78324
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../TopTrack")
 
+[node name="switch_sign" parent="TrackSwitch" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
+
 [node name="arrow1" parent="TrackSwitch" index="2"]
 transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.254984, 0.653455, 0.0758553)
 
@@ -352,6 +361,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, 6.74336)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../BottomTrack")
 
+[node name="switch_sign" parent="TrackSwitch5" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
+
+[node name="arrow1" parent="TrackSwitch5" index="2"]
+transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.270202, 0.653455, 0.17435)
+
 [node name="arrow2" parent="TrackSwitch5" index="3"]
 transform = Transform3D(0.374833, 0, -0.927092, 0, 1, 0, 0.927092, 0, 0.374833, 0.362303, 0.653455, -0.188929)
 
@@ -359,6 +374,9 @@ transform = Transform3D(0.374833, 0, -0.927092, 0, 1, 0, 0.927092, 0, 0.374833, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, -5.60393)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../DownwardX")
+
+[node name="switch_sign" parent="TrackSwitch4" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch4" index="2"]
 transform = Transform3D(-0.42873, 0, -0.903433, 0, 1, 0, 0.903433, 0, -0.42873, 0.270203, 0.653455, 0.17435)
@@ -370,6 +388,9 @@ transform = Transform3D(-0.616528, 0, -0.787333, 0, 1, 0, 0.787333, 0, -0.616528
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, 5.68105)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../UpwardX")
+
+[node name="switch_sign" parent="TrackSwitch8" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch8" index="2"]
 transform = Transform3D(0.417661, 0, -0.908603, 0, 1, 0, 0.908603, 0, 0.417661, 0.931951, 0.653455, -0.169581)
@@ -383,6 +404,9 @@ track1 = NodePath("../RightCircle")
 track2 = NodePath("../BottomTrack")
 dir = -1.0
 
+[node name="switch_sign" parent="TrackSwitch2" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
+
 [node name="arrow1" parent="TrackSwitch2" index="2"]
 transform = Transform3D(0.0314458, 0, 0.999506, 0, 1, 0, -0.999506, 0, 0.0314458, -0.809097, 0.653455, 0.0954499)
 
@@ -394,6 +418,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, -6.803)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../TopTrack")
 dir = -1.0
+
+[node name="switch_sign" parent="TrackSwitch6" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch6" index="2"]
 transform = Transform3D(0.00652755, 0, 0.999979, 0, 1, 0, -0.999979, 0, 0.00652755, -1.01285, 0.653455, 0.112631)
@@ -407,6 +434,9 @@ track1 = NodePath("../RightCircle")
 track2 = NodePath("../UpwardX")
 dir = -1.0
 
+[node name="switch_sign" parent="TrackSwitch7" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
+
 [node name="arrow1" parent="TrackSwitch7" index="2"]
 transform = Transform3D(-0.69116, 0, 0.722702, 0, 1, 0, -0.722702, 0, -0.69116, -0.720096, 0.653455, 0.730991)
 
@@ -418,6 +448,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0767, -0.351436, 5.6069)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../DownwardX")
 dir = -1.0
+
+[node name="switch_sign" parent="TrackSwitch3" index="1"]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch3" index="2"]
 transform = Transform3D(0.407789, 0, 0.913076, 0, 1, 0, -0.913076, 0, 0.407789, -0.595707, 0.653455, -0.160427)
@@ -500,7 +533,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4335, 0.770923, -0.571928
 shape = SubResource("BoxShape3D_trceg")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5116, 0.364791, 4.30163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4517, 0.364791, 4.30163)
 shape = SubResource("CylinderShape3D_a8y0u")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Collisions"]
@@ -516,7 +549,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90741, 0.364791, 1.61367)
 shape = SubResource("CylinderShape3D_a8y0u")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6273, 0.364791, -8.27881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3362, 0.364791, -10.6543)
 shape = SubResource("CylinderShape3D_a8y0u")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="Collisions"]
@@ -526,6 +559,10 @@ shape = SubResource("SphereShape3D_jbj1t")
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="Collisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.69448, 0.364791, 3.5545)
 shape = SubResource("SphereShape3D_muem4")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46767, 0.364791, 3.7593)
+shape = SubResource("SphereShape3D_dp3eg")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="Collisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.434, 0.364791, -2.75583)
@@ -574,26 +611,34 @@ uppercase = true
 
 [editable path="map"]
 [editable path="TrackSwitch"]
+[editable path="TrackSwitch/switch_sign"]
 [editable path="TrackSwitch/arrow1"]
 [editable path="TrackSwitch/arrow2"]
 [editable path="TrackSwitch5"]
+[editable path="TrackSwitch5/switch_sign"]
 [editable path="TrackSwitch5/arrow1"]
 [editable path="TrackSwitch5/arrow2"]
 [editable path="TrackSwitch4"]
+[editable path="TrackSwitch4/switch_sign"]
 [editable path="TrackSwitch4/arrow1"]
 [editable path="TrackSwitch4/arrow2"]
 [editable path="TrackSwitch8"]
+[editable path="TrackSwitch8/switch_sign"]
 [editable path="TrackSwitch8/arrow1"]
 [editable path="TrackSwitch8/arrow2"]
 [editable path="TrackSwitch2"]
+[editable path="TrackSwitch2/switch_sign"]
 [editable path="TrackSwitch2/arrow1"]
 [editable path="TrackSwitch2/arrow2"]
 [editable path="TrackSwitch6"]
+[editable path="TrackSwitch6/switch_sign"]
 [editable path="TrackSwitch6/arrow1"]
 [editable path="TrackSwitch6/arrow2"]
 [editable path="TrackSwitch7"]
+[editable path="TrackSwitch7/switch_sign"]
 [editable path="TrackSwitch7/arrow1"]
 [editable path="TrackSwitch7/arrow2"]
 [editable path="TrackSwitch3"]
+[editable path="TrackSwitch3/switch_sign"]
 [editable path="TrackSwitch3/arrow1"]
 [editable path="TrackSwitch3/arrow2"]

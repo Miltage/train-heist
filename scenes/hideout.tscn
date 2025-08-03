@@ -14,7 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370758, 0, -0.195068)
 shape = SubResource("BoxShape3D_choun")
 
 [node name="arrow" parent="." instance=ExtResource("2_kwc7s")]
-transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 0.0447998, 2.76917)
+transform = Transform3D(-1.79986, 0, 0.0113565, 0, 1.5, 0, -0.022713, 0, -0.899928, 0.154419, 6.5069, -0.998713)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

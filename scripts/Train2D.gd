@@ -55,6 +55,7 @@ func _ready() -> void:
 	open_chests()
 
 	_tunnelPos = 5000
+	Globals.game_ended.connect(_on_game_ended)
 
 func _on_bandit_entered_chest() -> void:
 	$Bandit.hide()
@@ -102,3 +103,7 @@ func player_can_be_found() -> bool:
 
 func enter_tunnel() -> void:
 	_tunnelPos = 0
+
+func _on_game_ended(reason:Globals.GameEndReason) -> void:
+	if ((reason == Globals.GameEndReason.CAUGHT_BY_SHERIFF || reason == Globals.GameEndReason.FOUND_ON_BOARD)):
+		$Bandit.show()

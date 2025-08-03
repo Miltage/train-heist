@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://on77mgblags8"]
+[gd_scene load_steps=13 format=3 uid="uid://on77mgblags8"]
 
 [ext_resource type="Texture2D" uid="uid://c8s8gfsxfd17j" path="res://krita/sheriff-sheet.png" id="1_2n8su"]
 [ext_resource type="Script" uid="uid://dr3widnl5fjwe" path="res://scripts/Sheriff.gd" id="2_1weo1"]
 [ext_resource type="Texture2D" uid="uid://bkey8m1ramgci" path="res://krita/empty_hands.png" id="2_a88wr"]
+[ext_resource type="Texture2D" uid="uid://bhv2af4yglj65" path="res://krita/hands_gun.png" id="4_fmos2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a88wr"]
 atlas = ExtResource("1_2n8su")
@@ -68,8 +69,11 @@ animations = [{
 
 [node name="Sheriff" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_62eri")
-frame_progress = 0.17606
+frame_progress = 0.223239
 script = ExtResource("2_1weo1")
 
 [node name="Hands" type="Sprite2D" parent="."]
 texture = ExtResource("2_a88wr")
+
+[node name="HandsGun" type="Sprite2D" parent="."]
+texture = ExtResource("4_fmos2")

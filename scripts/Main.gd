@@ -11,6 +11,8 @@ func _ready() -> void:
 	$BankStop.train_entered.connect(_on_train_reached_stop)
 	Globals.game_restarted.connect(_on_game_restarted)
 
+	Globals.holdingCoin = false
+
 func _process(_delta: float) -> void:
 	pass
 
@@ -27,9 +29,9 @@ func _on_train_reached_stop() -> void:
 func _on_train_stopped() -> void:
 	if ($Train2D.player_can_be_found()):
 		Globals.game_ended.emit(Globals.GameEndReason.FOUND_ON_BOARD)
-
-	if (train.get_pos().x < 0): $Train2D.hide_coin()
-	else: $Train2D.open_chests()
+	else:
+		if (train.get_pos().x < 0): $Train2D.hide_coin()
+		else: $Train2D.open_chests()
 
 func _on_game_restarted() -> void:
 	get_tree().paused = false

@@ -60,8 +60,9 @@ position = Vector2(382.5, 295)
 [node name="Bandit" parent="." instance=ExtResource("3_jwsgh")]
 position = Vector2(290, 257.5)
 
-[node name="Sheriff" parent="." instance=ExtResource("6_qxubf")]
+[node name="Sheriff" parent="." node_paths=PackedStringArray("bandit") instance=ExtResource("6_qxubf")]
 position = Vector2(732.501, 265)
+bandit = NodePath("../Bandit")
 
 [node name="Front1" parent="." instance=ExtResource("7_ac5vk")]
 position = Vector2(2435, 217.5)

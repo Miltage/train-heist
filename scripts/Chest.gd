@@ -67,8 +67,17 @@ func _process(_delta: float) -> void:
 		on_primary_interact()
 
 func close(withCoin:bool) -> void:
+	if (state == ChestState.HIDING): return
 	state = ChestState.CLOSED
 	containsCoins = withCoin
 
 func open() -> void:
 	state = ChestState.OPEN
+
+func _on_game_ended(reason:Globals.GameEndReason) -> void:
+	if ((reason == Globals.GameEndReason.CAUGHT_BY_SHERIFF || reason == Globals.GameEndReason.FOUND_ON_BOARD) && state == ChestState.HIDING):
+		print("open")
+		open()
+
+func _ready() -> void:
+	Globals.game_ended.connect(_on_game_ended)

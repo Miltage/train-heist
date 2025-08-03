@@ -106,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89252, 1.47675, 0)
 material_override = SubResource("StandardMaterial3D_1caxn")
 lifetime = 3.0
 mesh = SubResource("SphereMesh_muh0j")
-gravity = Vector3(0, 0.5, 0)
+gravity = Vector3(0.1, 0.5, 0.15)
 scale_amount_min = 0.8
 scale_amount_curve = SubResource("Curve_muh0j")
 

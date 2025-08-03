@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://o4y1iiqqeyhc"]
+[gd_scene load_steps=6 format=3 uid="uid://o4y1iiqqeyhc"]
 
 [ext_resource type="Script" uid="uid://cq2aadd06efrk" path="res://scripts/TrackSwitch.gd" id="1_5i050"]
+[ext_resource type="PackedScene" uid="uid://b8lnkx3n2nc2j" path="res://blender/switch_sign.fbx" id="2_xwk2m"]
+[ext_resource type="PackedScene" uid="uid://c2w21cgv51v42" path="res://blender/arrow.fbx" id="3_c8j6i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0pqed"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5i050"]
-albedo_color = Color(0.831373, 0.133333, 0.188235, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8j6i"]
+transparency = 1
+albedo_color = Color(1, 0.0862745, 0.133333, 0.733333)
 
 [node name="TrackSwitch" type="Area3D"]
 script = ExtResource("1_5i050")
@@ -14,10 +17,25 @@ script = ExtResource("1_5i050")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.514061, 0)
 shape = SubResource("BoxShape3D_0pqed")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611056, 0)
-size = Vector3(0.3, 0.3, 0.3)
-material = SubResource("StandardMaterial3D_5i050")
+[node name="switch_sign" parent="." instance=ExtResource("2_xwk2m")]
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
+
+[node name="arrow1" parent="." instance=ExtResource("3_c8j6i")]
+transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.270202, 0.653455, 0.17435)
+
+[node name="Plane" parent="arrow1" index="0"]
+material_override = SubResource("StandardMaterial3D_c8j6i")
+cast_shadow = 0
+
+[node name="arrow2" parent="." instance=ExtResource("3_c8j6i")]
+transform = Transform3D(0.443087, 0, -0.896479, 0, 1, 0, 0.896479, 0, 0.443087, 0.270202, 0.653455, -0.321714)
+
+[node name="Plane" parent="arrow2" index="0"]
+material_override = SubResource("StandardMaterial3D_c8j6i")
+cast_shadow = 0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+
+[editable path="arrow1"]
+[editable path="arrow2"]

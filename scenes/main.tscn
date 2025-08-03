@@ -159,22 +159,22 @@ train = NodePath("Train")
 [node name="Bank" parent="map" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_trceg")
 
-[node name="CaveEntrance" parent="map" index="5"]
+[node name="CaveEntrance" parent="map" index="6"]
 material_override = SubResource("StandardMaterial3D_ya4ey")
 
-[node name="CircleTrackLeft" parent="map" index="6"]
+[node name="CircleTrackLeft" parent="map" index="7"]
 cast_shadow = 0
 
-[node name="CircleTrackRight" parent="map" index="7"]
+[node name="CircleTrackRight" parent="map" index="8"]
 cast_shadow = 0
 
-[node name="Floor" parent="map" index="10"]
+[node name="Floor" parent="map" index="11"]
 surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
 
-[node name="Mountain" parent="map" index="11"]
+[node name="Mountain" parent="map" index="12"]
 surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
 
-[node name="Saloon" parent="map" index="13"]
+[node name="Saloon" parent="map" index="14"]
 surface_material_override/0 = SubResource("ShaderMaterial_eb6dy")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
@@ -313,26 +313,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, -6.78324
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../TopTrack")
 
+[node name="arrow1" parent="TrackSwitch" index="2"]
+transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.254984, 0.653455, 0.0758553)
+
+[node name="arrow2" parent="TrackSwitch" index="3"]
+transform = Transform3D(-0.316775, 0, -0.948501, 0, 1, 0, 0.948501, 0, -0.316775, 0.253308, 0.653455, 0.374796)
+
 [node name="TrackSwitch5" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, 6.74336)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../BottomTrack")
+
+[node name="arrow2" parent="TrackSwitch5" index="3"]
+transform = Transform3D(0.374833, 0, -0.927092, 0, 1, 0, 0.927092, 0, 0.374833, 0.362303, 0.653455, -0.188929)
 
 [node name="TrackSwitch4" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, -5.60393)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../DownwardX")
 
+[node name="arrow1" parent="TrackSwitch4" index="2"]
+transform = Transform3D(-0.42873, 0, -0.903433, 0, 1, 0, 0.903433, 0, -0.42873, 0.270203, 0.653455, 0.17435)
+
+[node name="arrow2" parent="TrackSwitch4" index="3"]
+transform = Transform3D(-0.616528, 0, -0.787333, 0, 1, 0, 0.787333, 0, -0.616528, 0.200408, 0.653455, 0.355179)
+
 [node name="TrackSwitch8" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, 5.68105)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../UpwardX")
 
+[node name="arrow1" parent="TrackSwitch8" index="2"]
+transform = Transform3D(0.417661, 0, -0.908603, 0, 1, 0, 0.908603, 0, 0.417661, 0.931951, 0.653455, -0.169581)
+
+[node name="arrow2" parent="TrackSwitch8" index="3"]
+transform = Transform3D(0.727126, 0, -0.686504, 0, 1, 0, 0.686504, 0, 0.727126, 0.627213, 0.653455, -0.451663)
+
 [node name="TrackSwitch2" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, 6.66949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, 6.88338)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../BottomTrack")
 dir = -1.0
+
+[node name="arrow1" parent="TrackSwitch2" index="2"]
+transform = Transform3D(0.0314458, 0, 0.999506, 0, 1, 0, -0.999506, 0, 0.0314458, -0.809097, 0.653455, 0.0954499)
+
+[node name="arrow2" parent="TrackSwitch2" index="3"]
+transform = Transform3D(0.22575, 0, 0.974185, 0, 1, 0, -0.974185, 0, 0.22575, -0.827211, 0.653455, -0.162281)
 
 [node name="TrackSwitch6" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, -6.803)
@@ -340,17 +367,35 @@ track1 = NodePath("../RightCircle")
 track2 = NodePath("../TopTrack")
 dir = -1.0
 
+[node name="arrow1" parent="TrackSwitch6" index="2"]
+transform = Transform3D(0.00652755, 0, 0.999979, 0, 1, 0, -0.999979, 0, 0.00652755, -1.01285, 0.653455, 0.112631)
+
+[node name="arrow2" parent="TrackSwitch6" index="3"]
+transform = Transform3D(-0.305778, 0, 0.952103, 0, 1, 0, -0.952103, 0, -0.305778, -1.10092, 0.653455, 0.258381)
+
 [node name="TrackSwitch7" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.441, -0.351436, -5.77205)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../UpwardX")
 dir = -1.0
 
+[node name="arrow1" parent="TrackSwitch7" index="2"]
+transform = Transform3D(-0.69116, 0, 0.722702, 0, 1, 0, -0.722702, 0, -0.69116, -0.720096, 0.653455, 0.730991)
+
+[node name="arrow2" parent="TrackSwitch7" index="3"]
+transform = Transform3D(-0.4068, 0, 0.913517, 0, 1, 0, -0.913517, 0, -0.4068, -0.744106, 0.653455, 0.379373)
+
 [node name="TrackSwitch3" parent="." node_paths=PackedStringArray("track1", "track2") instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0767, -0.351436, 5.6069)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../DownwardX")
 dir = -1.0
+
+[node name="arrow1" parent="TrackSwitch3" index="2"]
+transform = Transform3D(0.407789, 0, 0.913076, 0, 1, 0, -0.913076, 0, 0.407789, -0.595707, 0.653455, -0.160427)
+
+[node name="arrow2" parent="TrackSwitch3" index="3"]
+transform = Transform3D(0.663156, 0, 0.748481, 0, 1, 0, -0.748481, 0, 0.663156, -0.198283, 0.653455, -0.290249)
 
 [node name="Train" parent="." node_paths=PackedStringArray("leftCircle", "rightCircle", "startingTrack") instance=ExtResource("6_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041919, 0, 6.70457)
@@ -438,7 +483,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.18503, 0.364791, -2.16289)
 shape = SubResource("CylinderShape3D_a8y0u")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Collisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8253, 0.364791, -0.129083)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74074, 0.364791, -0.129083)
+shape = SubResource("CylinderShape3D_a8y0u")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90741, 0.364791, 1.61367)
 shape = SubResource("CylinderShape3D_a8y0u")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Collisions"]
@@ -467,3 +516,27 @@ horizontal_alignment = 1
 [connection signal="body_entered" from="Tunnel" to="." method="_on_tunnel_body_entered"]
 
 [editable path="map"]
+[editable path="TrackSwitch"]
+[editable path="TrackSwitch/arrow1"]
+[editable path="TrackSwitch/arrow2"]
+[editable path="TrackSwitch5"]
+[editable path="TrackSwitch5/arrow1"]
+[editable path="TrackSwitch5/arrow2"]
+[editable path="TrackSwitch4"]
+[editable path="TrackSwitch4/arrow1"]
+[editable path="TrackSwitch4/arrow2"]
+[editable path="TrackSwitch8"]
+[editable path="TrackSwitch8/arrow1"]
+[editable path="TrackSwitch8/arrow2"]
+[editable path="TrackSwitch2"]
+[editable path="TrackSwitch2/arrow1"]
+[editable path="TrackSwitch2/arrow2"]
+[editable path="TrackSwitch6"]
+[editable path="TrackSwitch6/arrow1"]
+[editable path="TrackSwitch6/arrow2"]
+[editable path="TrackSwitch7"]
+[editable path="TrackSwitch7/arrow1"]
+[editable path="TrackSwitch7/arrow2"]
+[editable path="TrackSwitch3"]
+[editable path="TrackSwitch3/arrow1"]
+[editable path="TrackSwitch3/arrow2"]

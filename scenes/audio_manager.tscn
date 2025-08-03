@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8niobvansm4c"]
+
+[ext_resource type="Script" uid="uid://d1jdvg3p7w07x" path="res://scripts/AudioManager.gd" id="1_8qd8g"]
+[ext_resource type="AudioStream" uid="uid://n30o8ekmrt2c" path="res://audio/ui_coins (1).ogg" id="2_aoitu"]
+[ext_resource type="AudioStream" uid="uid://cqmtf5f7x2y48" path="res://audio/ui_coins (2).ogg" id="3_njtn3"]
+[ext_resource type="AudioStream" uid="uid://ct1yi30k8r4e7" path="res://audio/ui_coins (3).ogg" id="4_kq7b2"]
+[ext_resource type="AudioStream" uid="uid://8kwbaxl1u0we" path="res://audio/ui_coins (4).ogg" id="5_02gw7"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ujhup"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("2_aoitu")
+stream_1/stream = ExtResource("3_njtn3")
+stream_2/stream = ExtResource("4_kq7b2")
+stream_3/stream = ExtResource("5_02gw7")
+
+[node name="AudioManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_8qd8g")
+
+[node name="Coins" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ujhup")

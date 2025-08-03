@@ -4,11 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c2w21cgv51v42" path="res://blender/arrow.fbx" id="2_kwc7s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_choun"]
+size = Vector3(1.74152, 1, 1.39014)
 
 [node name="Hideout" type="Area3D"]
 script = ExtResource("1_uy1vd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370758, 0, -0.195068)
 shape = SubResource("BoxShape3D_choun")
 
 [node name="arrow" parent="." instance=ExtResource("2_kwc7s")]

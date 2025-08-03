@@ -50,7 +50,6 @@ func _on_game_restarted() -> void:
 
 func _on_tunnel_body_entered(body:Node3D) -> void:
 	if (body is TrainCar && (body as TrainCar).first): 
-		print("train entered tunnel")
 		$Train2D.enter_tunnel()
 
 func _on_coin_collected() -> void:

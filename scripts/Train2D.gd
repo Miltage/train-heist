@@ -39,6 +39,9 @@ func _process(delta: float) -> void:
 	_tunnelPos += delta * speed
 	$Darkness.position.x = 3000 - _tunnelPos * 80
 
+	if ($Bandit.position.x > $Darkness.position.x && $Bandit.position.x < $Darkness.position.x + $Darkness.size.x && playerOnRoof):
+		Globals.game_ended.emit(Globals.GameEndReason.KILLED_IN_TUNNEL)
+
 	if (Input.is_action_just_pressed("interact") && playerCanLeave):
 		leave_train()
 

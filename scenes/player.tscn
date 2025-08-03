@@ -6,7 +6,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 transparency = 1
 no_depth_test = true
-albedo_color = Color(1, 1, 1, 0.156863)
+albedo_color = Color(0.481789, 0.481789, 0.481789, 0.156863)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.2
@@ -23,6 +23,9 @@ transform = Transform3D(-0.15, 0, 1.31134e-08, 0, 0.15, 0, -1.31134e-08, 0, -0.1
 material_overlay = SubResource("StandardMaterial3D_g2els")
 
 [node name="Horse" parent="player" index="3"]
+material_overlay = SubResource("StandardMaterial3D_g2els")
+
+[node name="Horse2" parent="player" index="4"]
 material_overlay = SubResource("StandardMaterial3D_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

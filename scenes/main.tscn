@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=39 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -12,6 +12,20 @@
 [ext_resource type="Script" uid="uid://d12bwqopd3aij" path="res://scripts/Hideout.gd" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bj8dmem6344pd" path="res://scenes/train_stop.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://nvt502tv3t5b" path="res://scenes/end_screen.tscn" id="11_ya4ey"]
+[ext_resource type="Theme" uid="uid://dcwfw22ttcafl" path="res://theme.tres" id="13_trceg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
+render_priority = 0
+shader = ExtResource("2_sugp2")
+shader_parameter/color = Color(0.941176, 0.92549, 0.886275, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
 shading_mode = 0
@@ -41,6 +55,19 @@ shader_parameter/_specular_smoothness = 0.196
 shader_parameter/_specular_strength = 0.056
 shader_parameter/_glossiness = 0.067
 shader_parameter/_rim_size = 0.41
+shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+render_priority = 0
+shader = ExtResource("2_sugp2")
+shader_parameter/color = Color(0.839216, 0.647059, 0.478431, 1)
+shader_parameter/shadow = 0.619
+shader_parameter/shadow_width = 0.321
+shader_parameter/shadow_color = Color(0.385493, 0.385493, 0.385492, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.131
+shader_parameter/_glossiness = 0.371
+shader_parameter/_rim_size = 0.493
 shader_parameter/_rim_smoothness = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o6xl0"]
@@ -114,6 +141,12 @@ shading_mode = 0
 _data = [Vector2(0, 0.478102), 0.0, 1.26363, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_trceg"]
+size = Vector3(2.20728, 1.70508, 2.48218)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a8y0u"]
+radius = 0.266602
+
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
 track = NodePath("LeftCircle")
@@ -121,20 +154,26 @@ train = NodePath("Train")
 
 [node name="map" parent="." instance=ExtResource("1_o5qli")]
 
-[node name="CaveEntrance" parent="map" index="0"]
+[node name="Bank" parent="map" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_trceg")
+
+[node name="CaveEntrance" parent="map" index="5"]
 material_override = SubResource("StandardMaterial3D_ya4ey")
 
-[node name="CircleTrackLeft" parent="map" index="1"]
+[node name="CircleTrackLeft" parent="map" index="6"]
 cast_shadow = 0
 
-[node name="CircleTrackRight" parent="map" index="2"]
+[node name="CircleTrackRight" parent="map" index="7"]
 cast_shadow = 0
 
-[node name="Floor" parent="map" index="7"]
+[node name="Floor" parent="map" index="10"]
 surface_material_override/0 = SubResource("ShaderMaterial_jyhfs")
 
-[node name="Mountain" parent="map" index="8"]
+[node name="Mountain" parent="map" index="11"]
 surface_material_override/0 = SubResource("ShaderMaterial_sugp2")
+
+[node name="Saloon" parent="map" index="13"]
+surface_material_override/0 = SubResource("ShaderMaterial_eb6dy")
 
 [node name="MountainCollision" type="StaticBody3D" parent="map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93729, 0.399799)
@@ -377,6 +416,40 @@ mesh = SubResource("SphereMesh_eb6dy")
 gravity = Vector3(0, 0.2, 0)
 scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_trceg")
+
+[node name="Collisions" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0969, 0.770923, 0)
+shape = SubResource("BoxShape3D_trceg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4335, 0.770923, -0.571928)
+shape = SubResource("BoxShape3D_trceg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5116, 0.364791, 4.30163)
+shape = SubResource("CylinderShape3D_a8y0u")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.18503, 0.364791, -2.16289)
+shape = SubResource("CylinderShape3D_a8y0u")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8253, 0.364791, -0.129083)
+shape = SubResource("CylinderShape3D_a8y0u")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Collisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6273, 0.364791, -8.27881)
+shape = SubResource("CylinderShape3D_a8y0u")
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+theme = ExtResource("13_trceg")
+text = "0 / 3"
 
 [connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
 [connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]

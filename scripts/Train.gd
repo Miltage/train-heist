@@ -41,6 +41,8 @@ func _process(_delta: float) -> void:
 	for car in _cars:
 		car.speed = speed
 
+	$SmokeStack.position = $Locomotive.position + Vector3(0, 1.4, 0) + $Locomotive.basis.x * 0.7
+
 func _on_player_boarded() -> void:
 	player_boarded.emit()
 

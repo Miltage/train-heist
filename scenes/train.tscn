@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj662rcnm3kv3"]
+[gd_scene load_steps=15 format=3 uid="uid://cj662rcnm3kv3"]
 
 [ext_resource type="PackedScene" uid="uid://csq1hupty5t2b" path="res://scenes/train_car.tscn" id="1_68jl8"]
 [ext_resource type="Script" uid="uid://cj3kjfovx0su2" path="res://scripts/Train.gd" id="1_d43s7"]
@@ -25,6 +25,16 @@ albedo_color = Color(0.25098, 0.333333, 0.470588, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flq6t"]
 albedo_color = Color(0.141176, 0.168627, 0.290196, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1caxn"]
+shading_mode = 0
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_muh0j"]
+
+[sub_resource type="Curve" id="Curve_muh0j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0780142, 0.905109), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.56216, 0.0, 0, 0]
+point_count = 3
 
 [node name="Train" type="Node3D"]
 script = ExtResource("1_d43s7")
@@ -80,6 +90,10 @@ transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50917, -0.0306017, -0.0309942)
 startingOffset = 18.0
 
+[node name="carriage" parent="Locomotive" index="4"]
+transform = Transform3D(-1.09278e-08, 0, -0.3, 0, 0.3, 0, 0.25, 0, -1.31134e-08, -0.807585, 0.116232, 0.0387692)
+visible = false
+
 [node name="locomotive" parent="Locomotive" instance=ExtResource("4_muh0j")]
 transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -3.27102, 0.123605, 0)
 
@@ -87,9 +101,14 @@ transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 
 surface_material_override/2 = SubResource("StandardMaterial3D_xwl36")
 surface_material_override/3 = SubResource("StandardMaterial3D_flq6t")
 
-[node name="carriage" parent="Locomotive" index="5"]
-transform = Transform3D(-1.09278e-08, 0, -0.3, 0, 0.3, 0, 0.25, 0, -1.31134e-08, -0.807585, 0.116232, 0.0387692)
-visible = false
+[node name="SmokeStack" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89252, 1.47675, 0)
+material_override = SubResource("StandardMaterial3D_1caxn")
+lifetime = 3.0
+mesh = SubResource("SphereMesh_muh0j")
+gravity = Vector3(0, 0.5, 0)
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_muh0j")
 
 [connection signal="timeout" from="StopWait" to="." method="_on_stop_wait_timeout"]
 
@@ -104,5 +123,5 @@ visible = false
 [editable path="Coal"]
 [editable path="Coal/carriage"]
 [editable path="Locomotive"]
-[editable path="Locomotive/locomotive"]
 [editable path="Locomotive/carriage"]
+[editable path="Locomotive/locomotive"]

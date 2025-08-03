@@ -14,9 +14,11 @@ func _ready() -> void:
 	Globals.holdingCoin = false
 
 func _process(_delta: float) -> void:
-	pass
+	$HorseDust.position = $Player.position
+	$HorseDust.emitting = $Player.velocity.length() > 1.0 || $Player.boarded
 
 func _on_player_boarded_train() -> void:
+	if ($Player.boarded): return
 	$Player.boarded = true
 	$Train2D.board_train()
 

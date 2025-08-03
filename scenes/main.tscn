@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b0p5mfdhul2bo"]
+[gd_scene load_steps=34 format=3 uid="uid://b0p5mfdhul2bo"]
 
 [ext_resource type="PackedScene" uid="uid://7bpg22uxx5d" path="res://blender/map.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c4h2ki4uw7c5f" path="res://scripts/Main.gd" id="1_tbgi4"]
@@ -74,28 +74,28 @@ ambient_light_energy = 0.1
 
 [sub_resource type="Curve3D" id="Curve3D_o6xl0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.216652, 0, -0.0622687, 0, 0, 0, 0, 0, 0, -32.42, 0, 0.0350876),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.11699, 0, -0.0622687, 0, 0, 0, 0, 0, 0, -32.42, 0, 0.0350876),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_tipki"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.15979, 0, 0.0088048, 0, 0, 0, 0, 0, 0, -32.065, 0, 0.0148253),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.504827, 4.76837e-07, -0.00635052, 0, 0, 0, 0, 0, 0, -32.3084, 0, 0.0148253),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_tefeu"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.252, 0, -0.38847, 0, 0, 0, 0, 0, 0, -28.8125, 0, -12.7183),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.46619, 0, -0.0555072, 0, 0, 0, 0, 0, 0, -30.0858, 0, -13.4058),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_jyhfs"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.07781, 0, -0.997813, 0, 0, 0, 0, 0, 0, -28.4875, 0, 11.334),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.07781, 0, -0.997813, 0, 0, 0, 0, 0, 0, -29.2994, 0, 11.6189),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -104,6 +104,15 @@ point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
 size = Vector3(15.9873, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb6dy"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eb6dy"]
+
+[sub_resource type="Curve" id="Curve_trceg"]
+_data = [Vector2(0, 0.478102), 0.0, 1.26363, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("track", "train")]
 script = ExtResource("1_tbgi4")
@@ -309,7 +318,7 @@ rightCircle = NodePath("../RightCircle")
 startingTrack = NodePath("../BottomTrack")
 
 [node name="Player" parent="." instance=ExtResource("7_o6xl0")]
-transform = Transform3D(-0.703159, 0, -0.711033, 0, 1, 0, 0.711033, 0, -0.703159, 0, 0, 0)
+transform = Transform3D(-0.703159, 0, -0.711033, 0, 1, 0, 0.711033, 0, -0.703159, 0, 0, 3.14598)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -188.0
@@ -358,6 +367,16 @@ shape = SubResource("BoxShape3D_eb6dy")
 
 [node name="EndScreen" parent="." instance=ExtResource("11_ya4ey")]
 visible = false
+
+[node name="HorseDust" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.14598)
+material_override = SubResource("StandardMaterial3D_eb6dy")
+emitting = false
+lifetime = 2.0
+mesh = SubResource("SphereMesh_eb6dy")
+gravity = Vector3(0, 0.2, 0)
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_trceg")
 
 [connection signal="train_stopped" from="Train" to="." method="_on_train_stopped"]
 [connection signal="body_entered" from="Hideout" to="Hideout" method="_on_body_entered"]

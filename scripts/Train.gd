@@ -51,7 +51,7 @@ func stop() -> void:
 
 func _on_stop_wait_timeout() -> void:
 	_baseSpeed += 0.05
-	targetSpeed = min(_baseSpeed, 4)
+	targetSpeed = min(_baseSpeed, 3.5)
 
 func get_pos() -> Vector3:
 	return _cars[0].position

@@ -10,10 +10,19 @@ var followingCar:TrainCar
 var targetPos:Vector3
 var targetRotation:Vector3
 
-func _process(_delta: float) -> void:
+var _timeElapsed:float
+var _bounce:float
+
+func _process(delta: float) -> void:
+	_timeElapsed += delta
+
 	$player/Hands.visible = !boarded && !Globals.holdingCoin
 	$player/HandsCoin.visible = !boarded && Globals.holdingCoin
 	$player/Bandit.visible = !boarded
+
+	var s = 0.2 if (velocity.length() > 1.0 || boarded) else 0.0
+	_bounce = lerp(_bounce, s, 0.2)
+	scale = Vector3.ONE * 1.0 + Vector3.ONE * abs(sin(_timeElapsed * 10)) * _bounce
 
 	if (boarded): 
 		follow_car()

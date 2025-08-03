@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	$Wheel8.rotation += delta * speed
 
 	_timeElapsed += delta * speed
-	if (_timeElapsed > 2.7): _timeElapsed = 0.0
+	if (_timeElapsed > 2.0): _timeElapsed = 0.0
 
 	$Track.position.x = -_timeElapsed * 80
 

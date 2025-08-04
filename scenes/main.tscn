@@ -347,9 +347,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, -6.78324
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../TopTrack")
 
-[node name="switch_sign" parent="TrackSwitch" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
-
 [node name="arrow1" parent="TrackSwitch" index="2"]
 transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.254984, 0.653455, 0.0758553)
 
@@ -361,12 +358,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6776, -0.351436, 6.74336)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../BottomTrack")
 
-[node name="switch_sign" parent="TrackSwitch5" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
-
-[node name="arrow1" parent="TrackSwitch5" index="2"]
-transform = Transform3D(-0.0241705, 0, -0.999708, 0, 1, 0, 0.999708, 0, -0.0241705, 0.270202, 0.653455, 0.17435)
-
 [node name="arrow2" parent="TrackSwitch5" index="3"]
 transform = Transform3D(0.374833, 0, -0.927092, 0, 1, 0, 0.927092, 0, 0.374833, 0.362303, 0.653455, -0.188929)
 
@@ -374,9 +365,6 @@ transform = Transform3D(0.374833, 0, -0.927092, 0, 1, 0, 0.927092, 0, 0.374833, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, -5.60393)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../DownwardX")
-
-[node name="switch_sign" parent="TrackSwitch4" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch4" index="2"]
 transform = Transform3D(-0.42873, 0, -0.903433, 0, 1, 0, 0.903433, 0, -0.42873, 0.270203, 0.653455, 0.17435)
@@ -388,9 +376,6 @@ transform = Transform3D(-0.616528, 0, -0.787333, 0, 1, 0, 0.787333, 0, -0.616528
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.177, -0.351436, 5.68105)
 track1 = NodePath("../LeftCircle")
 track2 = NodePath("../UpwardX")
-
-[node name="switch_sign" parent="TrackSwitch8" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch8" index="2"]
 transform = Transform3D(0.417661, 0, -0.908603, 0, 1, 0, 0.908603, 0, 0.417661, 0.931951, 0.653455, -0.169581)
@@ -404,9 +389,6 @@ track1 = NodePath("../RightCircle")
 track2 = NodePath("../BottomTrack")
 dir = -1.0
 
-[node name="switch_sign" parent="TrackSwitch2" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
-
 [node name="arrow1" parent="TrackSwitch2" index="2"]
 transform = Transform3D(0.0314458, 0, 0.999506, 0, 1, 0, -0.999506, 0, 0.0314458, -0.809097, 0.653455, 0.0954499)
 
@@ -418,9 +400,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.732, -0.351436, -6.803)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../TopTrack")
 dir = -1.0
-
-[node name="switch_sign" parent="TrackSwitch6" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch6" index="2"]
 transform = Transform3D(0.00652755, 0, 0.999979, 0, 1, 0, -0.999979, 0, 0.00652755, -1.01285, 0.653455, 0.112631)
@@ -434,9 +413,6 @@ track1 = NodePath("../RightCircle")
 track2 = NodePath("../UpwardX")
 dir = -1.0
 
-[node name="switch_sign" parent="TrackSwitch7" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
-
 [node name="arrow1" parent="TrackSwitch7" index="2"]
 transform = Transform3D(-0.69116, 0, 0.722702, 0, 1, 0, -0.722702, 0, -0.69116, -0.720096, 0.653455, 0.730991)
 
@@ -448,9 +424,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0767, -0.351436, 5.6069)
 track1 = NodePath("../RightCircle")
 track2 = NodePath("../DownwardX")
 dir = -1.0
-
-[node name="switch_sign" parent="TrackSwitch3" index="1"]
-transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.0142062, 0, -0.479051)
 
 [node name="arrow1" parent="TrackSwitch3" index="2"]
 transform = Transform3D(0.407789, 0, 0.913076, 0, 1, 0, -0.913076, 0, 0.407789, -0.595707, 0.653455, -0.160427)
